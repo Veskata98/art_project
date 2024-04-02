@@ -16,7 +16,7 @@ const surfaceMap: any = {
 
 export const ArtworkCard = ({ artwork }: { artwork: any }) => {
     return (
-        <Link href={`/artworks/${artwork.id}`}>
+        <Link href={`/artwork/${artwork.id}`}>
             <Card>
                 <CardContent
                     className="p-2 rounded shadow-none flex flex-col 

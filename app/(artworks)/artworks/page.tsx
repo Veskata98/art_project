@@ -66,37 +66,37 @@ export default function page() {
             <aside className="w-64 text-zinc-800 p-4 flex flex-col pt-9">
                 <ul className="flex flex-col gap-4 text-lg font-semibold">
                     <li>
-                        <Link href="/artworks/c/landscapes">Пейзаж</Link>
+                        <Link href="/artworks/landscapes">Пейзаж</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/portraits">Портрет</Link>
+                        <Link href="/artworks/portraits">Портрет</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/abstract">Абстракция</Link>
+                        <Link href="/artworks/abstract">Абстракция</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/religious">Религиозно</Link>
+                        <Link href="/artworks/religious">Религиозно</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/still-life">Натюрморт</Link>
+                        <Link href="/artworks/still-life">Натюрморт</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/figurative">Фигуративно</Link>
+                        <Link href="/artworks/figurative">Фигуративно</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/realism">Реализъм</Link>
+                        <Link href="/artworks/realism">Реализъм</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/impressionism">Импресионизъм</Link>
+                        <Link href="/artworks/impressionism">Импресионизъм</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/expressionism">Експресионизъм</Link>
+                        <Link href="/artworks/expressionism">Експресионизъм</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/cubism">Кубизъм</Link>
+                        <Link href="/artworks/cubism">Кубизъм</Link>
                     </li>
                     <li>
-                        <Link href="/artworks/c/surrealism">Сюрреализъм</Link>
+                        <Link href="/artworks/surrealism">Сюрреализъм</Link>
                     </li>
                 </ul>
             </aside>
