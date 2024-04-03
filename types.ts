@@ -1,7 +1,7 @@
 export type Artwork = {
     id: number;
     title: string;
-    imageUrl: string;
+    image: string;
     createdAt: string;
     size: string;
     surface: string;

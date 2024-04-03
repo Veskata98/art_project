@@ -9,8 +9,13 @@ import car from '@/public/car.jpg';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { Artwork } from '@/types';
 
-export const HomePageCarousel = () => {
+interface HomePageCarouselProps {
+    latestArtworks: Artwork[];
+}
+
+export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
     return (
         <>
             <Carousel
@@ -25,16 +30,18 @@ export const HomePageCarousel = () => {
                 ]}
             >
                 <CarouselContent>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                            <Link key={index} href={`/artwork/${index}`}>
+                    {latestArtworks.map((artwork) => (
+                        <CarouselItem key={artwork.id} className="md:basis-1/2 lg:basis-1/3">
+                            <Link key={artwork.id} href={`/artwork/${artwork.id}`}>
                                 <Card>
                                     <CardContent className="p-0 flex justify-center h-[600px]">
-                                        {index % 2 === 0 ? (
-                                            <Image src={monalisa} alt="Mona Lisa" className="w-full object-contain" />
-                                        ) : (
-                                            <Image src={car} alt="Mona Lisa" className="w-full object-contain" />
-                                        )}
+                                        <Image
+                                            src={artwork.image}
+                                            alt={artwork.title}
+                                            className="w-full object-contain"
+                                            width={600}
+                                            height={600}
+                                        />
                                     </CardContent>
                                 </Card>
                             </Link>
