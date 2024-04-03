@@ -2,13 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import sql from '@/lib/db';
 import { categoryMap, surfaceMap } from '@/lib/utils';
 
-import { Artwork } from '@/types';
 import { Check, X } from 'lucide-react';
 
 import { ReturnButton } from '@/components/ReturnButton';
+
+import { getArtworkById } from '@/actions/artworkActions';
 
 interface ArtworkIdPageParams {
     params: {
@@ -18,13 +18,8 @@ interface ArtworkIdPageParams {
 
 export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     const artworkId = params.artworkId;
-    let artwork;
 
-    try {
-        artwork = (await sql`SELECT * FROM artworks WHERE id = ${artworkId}`).at(0) as Artwork;
-    } catch (error) {
-        console.log(error);
-    }
+    const artwork = await getArtworkById(artworkId);
 
     if (!artwork) {
         return redirect('/');

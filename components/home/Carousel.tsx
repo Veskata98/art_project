@@ -34,7 +34,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
                         <CarouselItem key={artwork.id} className="md:basis-1/2 lg:basis-1/3">
                             <Link key={artwork.id} href={`/artwork/${artwork.id}`}>
                                 <Card>
-                                    <CardContent className="p-4 flex justify-center h-[600px]">
+                                    <CardContent className="p-4 flex justify-center lg:h-[500px] md:h-[450px] h-[400px]">
                                         <Image
                                             src={artwork.image}
                                             alt={artwork.title}

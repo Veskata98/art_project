@@ -1,17 +1,9 @@
-import sql from '@/lib/db';
-
-import { Artwork } from '@/types';
+import { getLatestArtworks } from '@/actions/artworkActions';
 
 import { HomePageCarousel } from '@/components/home/Carousel';
 
 export default async function HomePage() {
-    const latestArtworks: Artwork[] = await sql`
-        SELECT * 
-        FROM artworks
-        WHERE available = true
-        ORDER BY created_at DESC 
-        LIMIT 5
-    `;
+    const latestArtworks = await getLatestArtworks();
 
     return (
         <div className="flex flex-col items-center md:w-3/4">
