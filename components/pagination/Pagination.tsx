@@ -3,6 +3,7 @@
 import {
     Pagination,
     PaginationContent,
+    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -25,6 +26,10 @@ export const PaginationComponent = ({ artworkCount }: PaginationComponentProps) 
 
     const renderPaginationLinks = () => {
         const paginationLinks = [];
+
+        if (pageNumber > 2) {
+            paginationLinks.push(<PaginationEllipsis />);
+        }
 
         // Render link for previous page if current page is not the first page
         if (pageNumber > 1) {
@@ -53,6 +58,10 @@ export const PaginationComponent = ({ artworkCount }: PaginationComponentProps) 
             );
         }
 
+        if (totalPages - pageNumber > 1) {
+            paginationLinks.push(<PaginationEllipsis />);
+        }
+
         return paginationLinks;
     };
 
@@ -61,13 +70,13 @@ export const PaginationComponent = ({ artworkCount }: PaginationComponentProps) 
             <PaginationContent>
                 {pageNumber > 1 && (
                     <PaginationItem>
-                        <PaginationPrevious href={`${path}?page=1`} />
+                        <PaginationPrevious href={`${path}?page=${pageNumber - 1}`} />
                     </PaginationItem>
                 )}
                 {renderPaginationLinks()}
                 {pageNumber < totalPages && (
                     <PaginationItem>
-                        <PaginationNext href={`${path}?page=${totalPages}`} />
+                        <PaginationNext href={`${path}?page=${pageNumber + 1}`} />
                     </PaginationItem>
                 )}
             </PaginationContent>
