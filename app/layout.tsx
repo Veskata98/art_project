@@ -19,7 +19,12 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <Header />
-                <main className="flex min-h-screen flex-col items-center justify-between p-10">{children}</main>
+                <main
+                    className="flex flex-col items-center justify-between p-10"
+                    style={{ minHeight: 'calc(100vh - 120px)' }}
+                >
+                    {children}
+                </main>
                 <Footer />
             </body>
         </html>

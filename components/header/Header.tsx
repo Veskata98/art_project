@@ -8,7 +8,7 @@ export const Header = () => {
     const isActive = (href: string) => path === href || (path.startsWith(href) && path[href.length] === '/');
 
     return (
-        <nav className="flex justify-between items-center p-4 bg-gray-800 text-white md:px-8">
+        <nav className="flex justify-between items-center p-4 bg-gray-800 text-white md:px-8 max-h-16">
             <Link href="/">
                 <h1 className="text-2xl font-bold">Art Gallery</h1>
             </Link>
