@@ -24,6 +24,11 @@ export const Header = () => {
                     </Link>
                 </li>
                 <li>
+                    <Link href="/archive" className={isActive('/archive') ? 'underline' : ''}>
+                        Архив
+                    </Link>
+                </li>
+                <li>
                     <Link href="/contacts" className={isActive('/contacts') ? 'underline' : ''}>
                         Контакти
                     </Link>

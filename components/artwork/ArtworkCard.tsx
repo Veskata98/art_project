@@ -1,18 +1,10 @@
 import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardFooter } from '../ui/card';
-
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 
-const surfaceMap: any = {
-    Canvas: 'Платно',
-    Cardboard: 'Картон',
-    Paper: 'Хартия',
-    Wood: 'Дърво',
-    Metal: 'Метал',
-    Glass: 'Стъкло',
-    Stone: 'Камък',
-};
+import { categoryMap, cn, surfaceMap } from '@/lib/utils';
+
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 export const ArtworkCard = ({ artwork }: { artwork: any }) => {
     return (
@@ -38,10 +30,11 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                             </div>
                         )}
                     </div>
+                    <Separator className="mt-2" />
                     <CardFooter className="flex flex-col mt-2">
                         <h2 className="text-xl font-bold">{artwork.title}</h2>
 
-                        <p className="font-semibold text-sm">{artwork.category}</p>
+                        <p className="font-semibold text-sm">{categoryMap[artwork.category]}</p>
 
                         <div className="flex flex-col mt-2 text-center italic">
                             <p className="text-sm">Размери: {artwork.size}</p>

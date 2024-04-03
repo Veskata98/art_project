@@ -23,7 +23,7 @@ export const ArtworksSection = ({ artworks, totalArtworkCount, heading }: Artwor
                         ))}
                     </div>
 
-                    <PaginationComponent artworkCount={totalArtworkCount} />
+                    {totalArtworkCount > 0 && <PaginationComponent artworkCount={totalArtworkCount} />}
                 </>
             )}
         </div>

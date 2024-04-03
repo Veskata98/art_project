@@ -6,6 +6,8 @@ import { Artwork } from '@/types';
 
 import sql from '@/lib/db';
 
+import { CategoryMap } from '@/lib/utils';
+
 interface ArtworksCategoryPageProps {
     params: {
         category: string;
@@ -15,18 +17,8 @@ interface ArtworksCategoryPageProps {
     };
 }
 
-const CategoryMap: any = {
-    landscapes: 'Пейзаж',
-    abstractions: 'Абстракция',
-    portraits: 'Портрет',
-    'still-life': 'Натюрморт',
-    figurative: 'Фигуративно',
-    realism: 'Реализъм',
-    impressionism: 'Импресионизъм',
-};
-
 export default async function ArtworksCategoryPage({ params, searchParams }: ArtworksCategoryPageProps) {
-    const category = CategoryMap[params.category];
+    const category = params.category;
 
     if (!category) {
         return redirect('/artworks');
@@ -46,5 +38,5 @@ export default async function ArtworksCategoryPage({ params, searchParams }: Art
     const artworks: Artwork[] = result.map((result: any) => ({ ...result }));
     const totalArtworks = Number(result[0]?.total);
 
-    return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks} heading={category} />;
+    return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks} heading={CategoryMap[category]} />;
 }

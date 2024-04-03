@@ -1,6 +1,26 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+    return twMerge(clsx(inputs));
 }
+
+export const surfaceMap: any = {
+    canvas: 'Платно',
+    cardboard: 'Картон',
+    paper: 'Хартия',
+    wood: 'Дърво',
+    metal: 'Метал',
+    glass: 'Стъкло',
+    stone: 'Камък',
+};
+
+export const categoryMap: any = {
+    landscapes: 'Пейзаж',
+    abstractions: 'Абстракция',
+    portraits: 'Портрет',
+    'still-life': 'Натюрморт',
+    figurative: 'Фигуративно',
+    realism: 'Реализъм',
+    impressionism: 'Импресионизъм',
+};

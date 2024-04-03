@@ -34,7 +34,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
                         <CarouselItem key={artwork.id} className="md:basis-1/2 lg:basis-1/3">
                             <Link key={artwork.id} href={`/artwork/${artwork.id}`}>
                                 <Card>
-                                    <CardContent className="p-0 flex justify-center h-[600px]">
+                                    <CardContent className="p-4 flex justify-center h-[600px]">
                                         <Image
                                             src={artwork.image}
                                             alt={artwork.title}
@@ -53,7 +53,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
             </Carousel>
             <Link
                 href="/artworks"
-                className="pt-2 text-xl font-semibold hover:underline bg-zinc-700 p-2 rounded my-6 text-white"
+                className="py-2 text-xl font-semibold hover:underline bg-zinc-700 px-4 rounded my-6 text-white"
             >
                 Разгледайте цялата колекция
             </Link>

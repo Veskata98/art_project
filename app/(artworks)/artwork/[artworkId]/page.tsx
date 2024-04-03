@@ -1,11 +1,14 @@
-import { ReturnButton } from '@/components/ReturnButton';
-import sql from '@/lib/db';
-
-import { Artwork } from '@/types';
-import { Check, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+
+import sql from '@/lib/db';
+import { categoryMap, surfaceMap } from '@/lib/utils';
+
+import { Artwork } from '@/types';
+import { Check, X } from 'lucide-react';
+
+import { ReturnButton } from '@/components/ReturnButton';
 
 interface ArtworkIdPageParams {
     params: {
@@ -19,8 +22,6 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
 
     try {
         artwork = (await sql`SELECT * FROM artworks WHERE id = ${artworkId}`).at(0) as Artwork;
-
-        console.log(artwork);
     } catch (error) {
         console.log(error);
     }
@@ -30,31 +31,49 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     }
 
     return (
-        <section className="relative w-full md:w-4/6">
+        <section className="relative w-full lg:w-4/6 md:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
-            <div className="flex gap-6">
+            <div className="md:flex gap-6">
                 <div className="flex flex-col justify-center items-center w-full">
-                    <Image src={artwork.image} alt={artwork.title} width={500} height={500} className="w-full" />
+                    <Image
+                        src={artwork.image}
+                        alt={artwork.title}
+                        width={500}
+                        height={500}
+                        className="w-full max-h-[600px] object-contain bg-zinc-100/50 p-2 shadow-md"
+                    />
                 </div>
-                <aside className="w-96 flex flex-col bg-zinc-200 rounded p-4 items-center">
-                    <h1 className="text-xl font-semibold mb-2">{artwork?.title}</h1>
-
-                    {artwork.available ? (
-                        <p className="text-emerald-500 flex gap-2 font-semibold mb-6">
-                            Налична
-                            <Check />
+                <aside className="w-96 flex flex-col bg-zinc-100 rounded p-4 items-center justify-around shadow-md">
+                    <div className="text-center">
+                        <h1 className="text-2xl font-semibold mb-2 text-center">{artwork?.title}</h1>
+                        <p className="flex gap-2 justify-center items-center">
+                            <span className="font-semibold">Категория:</span>{' '}
+                            <Link href={`/artworks/${artwork.category}`} className="text-zinc-700 underline text-sm">
+                                {categoryMap[artwork.category]}
+                            </Link>
                         </p>
-                    ) : (
-                        <p className="text-red-500 flex gap-2 font-semibold mb-6">
-                            Не е налична <X />
-                        </p>
-                    )}
-                    <p>
-                        Категория: <Link href={`/artworks/${artwork.category}`}>{artwork.category}</Link>
-                    </p>
+                    </div>
 
-                    <p>Размери: {artwork?.size}</p>
-                    <p>Повърхност: {artwork.surface}</p>
+                    <div className="mb-6">
+                        {artwork.available ? (
+                            <p className="text-green-500 flex items-center gap-2 font-semibold">
+                                <Check className="w-5 h-5" /> Налична
+                            </p>
+                        ) : (
+                            <p className="text-red-500 flex items-center gap-2 font-semibold">
+                                <X className="w-5 h-5" /> Не е налична
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="flex flex-col gap-2 text-center">
+                        <p>
+                            <span className="font-semibold">Размери:</span> {artwork?.size}
+                        </p>
+                        <p>
+                            <span className="font-semibold">Повърхност:</span> {surfaceMap[artwork.surface]}
+                        </p>
+                    </div>
                 </aside>
             </div>
         </section>
