@@ -1,3 +1,9 @@
+import { redirect } from 'next/navigation';
+
+import { ArtworksSection } from '@/components/artworks/ArtworksSection';
+
+import { Artwork } from '@/types';
+
 import sql from '@/lib/db';
 
 interface ArtworksCategoryPageProps {
@@ -20,10 +26,10 @@ export default async function ArtworksCategoryPage({ params }: ArtworksCategoryP
     const category = CategoryMap[params.category];
 
     if (!category) {
-        return <div>Invalid category</div>;
+        return redirect('/artworks');
     }
 
-    const artworks = await sql`Select * from artworks where category = ${category}`;
+    const artworks: Artwork[] = await sql`Select * from artworks where category = ${category}`;
 
-    return <div>{JSON.stringify(artworks)}</div>;
+    return <ArtworksSection artworks={artworks} heading={category} />;
 }
