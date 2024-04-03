@@ -5,8 +5,13 @@ import { Artwork } from '@/types';
 import { HomePageCarousel } from '@/components/home/Carousel';
 
 export default async function HomePage() {
-    const latestArtworks: Artwork[] =
-        await sql`select * from artworks where available = true order by created_at desc limit 5`;
+    const latestArtworks: Artwork[] = await sql`
+        SELECT * 
+        FROM artworks
+        WHERE available = true
+        ORDER BY created_at DESC 
+        LIMIT 5
+    `;
 
     return (
         <div className="flex flex-col items-center md:w-3/4">

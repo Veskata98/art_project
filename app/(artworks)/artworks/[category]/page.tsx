@@ -27,17 +27,24 @@ const CategoryMap: any = {
 
 export default async function ArtworksCategoryPage({ params, searchParams }: ArtworksCategoryPageProps) {
     const category = CategoryMap[params.category];
-    const pageNumber = searchParams.page ? parseInt(searchParams.page) : 1;
 
     if (!category) {
         return redirect('/artworks');
     }
 
-    const artworks: Artwork[] =
-        await sql`Select * from artworks where category = ${category} ORDER BY created_at DESC LIMIT 6 OFFSET ${
-            (pageNumber - 1) * 6
-        }`;
-    const totalArtworks = Number((await sql`SELECT COUNT(*) FROM artworks WHERE category = ${category}`).at(0)?.count);
+    const pageNumber = searchParams.page ? parseInt(searchParams.page) : 1;
+    const offset = (pageNumber - 1) * 6;
+
+    const result = await sql`
+        SELECT *, (SELECT COUNT(*) FROM artworks WHERE category=${category}) as total 
+        FROM artworks
+        WHERE category = ${category} 
+        ORDER BY created_at DESC 
+        LIMIT 6 OFFSET ${offset}
+    `;
+
+    const artworks: Artwork[] = result.map((result: any) => ({ ...result }));
+    const totalArtworks = Number(result[0]?.total);
 
     return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks} heading={category} />;
 }
