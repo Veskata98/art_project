@@ -25,7 +25,7 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                     <div className="relative">
                         <Image
                             className={cn('rounded-t w-full h-96 object-contain', !artwork.available && 'opacity-30')}
-                            src={artwork.imageUrl}
+                            src={artwork.image}
                             alt={artwork.title}
                             width={400}
                             height={400}
