@@ -26,7 +26,9 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                         <Image
                             className={cn('rounded-t w-full h-96 object-contain', !artwork.available && 'opacity-30')}
                             src={artwork.imageUrl}
-                            alt="The Starry Night"
+                            alt={artwork.title}
+                            width={400}
+                            height={400}
                         />
                         {!artwork.available && (
                             <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
