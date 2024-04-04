@@ -89,3 +89,18 @@ export const getArtworksFromAllCategories = async (page: number) => {
         return { artworks: [], totalArtworks: 0 };
     }
 };
+
+export const getAllArtworks = async () => {
+    try {
+        const artworks: Artwork[] = await sql`
+            SELECT *
+            FROM artworks
+            ORDER BY created_at DESC
+        `;
+
+        return artworks;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
