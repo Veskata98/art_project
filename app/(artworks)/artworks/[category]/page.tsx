@@ -25,5 +25,7 @@ export default async function ArtworksCategoryPage({ params, searchParams }: Art
     const page = parseInt(searchParams.page) || 1;
     const { artworks, totalArtworks } = await getArtworksByCategory(category, page);
 
-    return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks} heading={categoryMap[category]} />;
+    return (
+        <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks || 0} heading={categoryMap[category]} />
+    );
 }

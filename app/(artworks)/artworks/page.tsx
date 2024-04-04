@@ -11,5 +11,5 @@ export default async function ArtworksPage({ searchParams }: ArtworksPageProps) 
 
     const { artworks, totalArtworks } = await getArtworksFromAllCategories(pageNumber);
 
-    return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks} />;
+    return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks || 0} />;
 }
