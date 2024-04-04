@@ -13,15 +13,15 @@ export default async function AdminPage() {
 
     return (
         <>
-            <Link href="/" replace className="bg-zinc-600 text-white p-4 py-2 mb-6 rounded-lg text-xl font-semibold">
+            <Link href="/" replace className="bg-zinc-600 text-white p-4 py-2 mb-8 rounded-lg text-xl font-semibold">
                 Към сайта
             </Link>
             <section className="flex w-4/5 justify-between">
                 <div className="w-96 text-center">
-                    <h1>Добави картина</h1>
+                    <h1 className="mb-4">Добави картина</h1>
                 </div>
                 <div className="flex-1 text-center">
-                    <h1>Табло</h1>
+                    <h1 className="mb-4">Табло</h1>
                     <Table className="w-full">
                         <TableHeader>
                             <TableRow>
@@ -37,8 +37,15 @@ export default async function AdminPage() {
                         <TableBody>
                             {artworks.map((artwork) => (
                                 <TableRow key={artwork.id}>
-                                    <TableCell className="flex justify-center">
-                                        <Image src={artwork.image} alt={artwork.title} width={100} height={100} />
+                                    <TableCell className="flex items-center justify-center">
+                                        <div className="relative h-40 w-40">
+                                            <Image
+                                                src={artwork.image}
+                                                alt={artwork.title}
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
                                     </TableCell>
                                     <TableCell>
                                         <div className="flex justify-center items-center">

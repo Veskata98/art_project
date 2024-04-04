@@ -29,13 +29,12 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
         <section className="relative w-full lg:w-4/6 md:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
             <div className="md:flex gap-6">
-                <div className="flex flex-col justify-center items-center w-full">
+                <div className="flex flex-col justify-center items-center w-full h-[300px] md:h-[600px] relative">
                     <Image
                         src={artwork.image}
                         alt={artwork.title}
-                        width={500}
-                        height={500}
-                        className="w-full max-h-[600px] object-contain bg-zinc-100/50 p-2 shadow-md"
+                        className="object-contain bg-zinc-100/50 p-2 shadow-md"
+                        fill
                     />
                 </div>
                 <aside className="w-96 flex flex-col bg-zinc-100 rounded p-4 items-center justify-around shadow-md">
