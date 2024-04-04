@@ -2,6 +2,7 @@
 
 import sql from '@/lib/db';
 import { Artwork } from '@/types';
+import { revalidatePath } from 'next/cache';
 
 export const getArchivedArtworks = async () => {
     try {
@@ -102,5 +103,14 @@ export const getAllArtworks = async () => {
     } catch (error) {
         console.log(error);
         return [];
+    }
+};
+
+export const deleteArtwork = async (artworkId: string) => {
+    try {
+        await sql`DELETE FROM artworks WHERE id = ${artworkId}`;
+        revalidatePath('/admin');
+    } catch (error) {
+        console.log(error);
     }
 };

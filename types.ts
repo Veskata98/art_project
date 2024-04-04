@@ -1,5 +1,5 @@
 export type Artwork = {
-    id: number;
+    id: string;
     title: string;
     image: string;
     createdAt: string;

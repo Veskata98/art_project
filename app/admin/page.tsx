@@ -1,24 +1,17 @@
 import { getAllArtworks } from '@/actions/artworkActions';
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableFooter,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
-import sql from '@/lib/db';
+import { AdminButtons } from '@/components/AdminButtons';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+
 import { categoryMap } from '@/lib/utils';
-import { Artwork } from '@/types';
+import { Check, X } from 'lucide-react';
+
 import Image from 'next/image';
 
 export default async function AdminPage() {
     const artworks = await getAllArtworks();
 
     return (
-        <section className="flex w-full justify-between">
+        <section className="flex w-4/5 justify-between">
             <div className="w-96 text-center">
                 <h1>Добави картина</h1>
             </div>
@@ -28,6 +21,7 @@ export default async function AdminPage() {
                     <TableHeader>
                         <TableRow>
                             <TableHead></TableHead>
+                            <TableHead className="text-center">Наличност</TableHead>
                             <TableHead className="text-center">Име</TableHead>
                             <TableHead className="text-center">Категория</TableHead>
                             <TableHead className="text-center">Размери</TableHead>
@@ -38,18 +32,24 @@ export default async function AdminPage() {
                     <TableBody>
                         {artworks.map((artwork) => (
                             <TableRow key={artwork.id}>
-                                <TableCell>
+                                <TableCell className="flex justify-center">
                                     <Image src={artwork.image} alt={artwork.title} width={100} height={100} />
+                                </TableCell>
+                                <TableCell>
+                                    <div className="flex justify-center items-center">
+                                        {artwork.available ? (
+                                            <Check className="w-5 h-5 text-emerald-500 text-center" />
+                                        ) : (
+                                            <X className="w-5 h-5 text-rose-500" />
+                                        )}
+                                    </div>
                                 </TableCell>
                                 <TableCell>{artwork.title}</TableCell>
                                 <TableCell>{categoryMap[artwork.category]}</TableCell>
                                 <TableCell>{artwork.size}</TableCell>
                                 <TableCell>{artwork.price}</TableCell>
                                 <TableCell>
-                                    <div className="flex gap-4 justify-around">
-                                        <button>Редактирай</button>
-                                        <button>Изтрий</button>
-                                    </div>
+                                    <AdminButtons artworkId={artwork.id} />
                                 </TableCell>
                             </TableRow>
                         ))}
