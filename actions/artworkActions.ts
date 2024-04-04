@@ -51,9 +51,9 @@ export const getArtworksByCategory = async (category: string, page: number) => {
         const offset = (page - 1) * 6;
 
         const result = await sql`
-            SELECT *, (SELECT COUNT(*) FROM artworks WHERE category=${category}) as total 
+            SELECT *, (SELECT COUNT(*) FROM artworks WHERE category=${category} AND available = true) as total 
             FROM artworks
-            WHERE category = ${category} 
+            WHERE category = ${category} AND available = true
             ORDER BY created_at DESC 
             LIMIT 6 OFFSET ${offset}
         `;
@@ -73,8 +73,9 @@ export const getArtworksFromAllCategories = async (page: number) => {
         const offset = (page - 1) * 6;
 
         const result = await sql`
-            SELECT *, (SELECT COUNT(*) FROM artworks) as total 
+            SELECT *, (SELECT COUNT(*) FROM artworks WHERE available = true) as total 
             FROM artworks
+            WHERE available = true
             ORDER BY created_at DESC 
             LIMIT 6 OFFSET ${offset}
         `;

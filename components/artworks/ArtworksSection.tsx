@@ -12,7 +12,7 @@ interface ArtworksSectionProps {
 export const ArtworksSection = ({ artworks, totalArtworkCount, heading }: ArtworksSectionProps) => {
     return (
         <div className="flex-1">
-            <h1 className="text-2xl font-bold text-center mb-2">{heading ? heading : 'Последни Картини'}</h1>
+            <h1 className="text-2xl font-bold text-center mb-2">{heading ? heading : 'Всички Картини'}</h1>
             {artworks.length === 0 ? (
                 <div className="w-full mt-8 flex justify-center items-center">Няма намерени картини</div>
             ) : (

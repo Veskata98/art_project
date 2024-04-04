@@ -32,7 +32,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
                 <CarouselContent>
                     {latestArtworks.map((artwork) => (
                         <CarouselItem key={artwork.id} className="md:basis-1/2 lg:basis-1/3">
-                            <Link key={artwork.id} href={`/artwork/${artwork.id}`}>
+                            <Link href={`/artwork/${artwork.id}`}>
                                 <Card>
                                     <CardContent className="p-4 flex justify-center lg:h-[500px] md:h-[450px] h-[400px]">
                                         <Image
@@ -53,7 +53,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
             </Carousel>
             <Link
                 href="/artworks"
-                className="py-2 text-xl font-semibold hover:underline bg-zinc-700 px-4 rounded my-6 text-white"
+                className="py-2 text-xl font-semibold hover:bg-zinc-500 transition-all bg-zinc-700 px-4 rounded my-6 text-white"
             >
                 Разгледайте цялата колекция
             </Link>

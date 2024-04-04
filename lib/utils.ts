@@ -16,6 +16,7 @@ export const surfaceMap: any = {
 };
 
 export const categoryMap: any = {
+    '/': 'Всички',
     landscapes: 'Пейзаж',
     abstractions: 'Абстракция',
     portraits: 'Портрет',

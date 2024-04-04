@@ -28,7 +28,7 @@ export const PaginationComponent = ({ artworkCount }: PaginationComponentProps) 
         const paginationLinks = [];
 
         if (pageNumber > 2) {
-            paginationLinks.push(<PaginationEllipsis />);
+            paginationLinks.push(<PaginationEllipsis key="ellipsis-back" />);
         }
 
         // Render link for previous page if current page is not the first page
@@ -59,7 +59,7 @@ export const PaginationComponent = ({ artworkCount }: PaginationComponentProps) 
         }
 
         if (totalPages - pageNumber > 1) {
-            paginationLinks.push(<PaginationEllipsis />);
+            paginationLinks.push(<PaginationEllipsis key="ellipsis-next" />);
         }
 
         return paginationLinks;
