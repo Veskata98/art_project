@@ -3,7 +3,8 @@ export type Artwork = {
     title: string;
     image: string;
     createdAt: string;
-    size: string;
+    length: number;
+    width: number;
     surface: string;
     category: string;
     available: boolean;

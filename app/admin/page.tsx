@@ -3,7 +3,7 @@ import { AdminButtons } from '@/components/AdminButtons';
 import { AddArtwork } from '@/components/adminComponents/AddArtwork';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
-import { categoryMap } from '@/lib/utils';
+import { categoryMap, formatSize } from '@/lib/utils';
 import { Check, X } from 'lucide-react';
 
 import Image from 'next/image';
@@ -17,9 +17,9 @@ export default async function AdminPage() {
             <Link href="/" replace className="bg-zinc-600 text-white p-4 py-2 mb-8 rounded-lg text-xl font-semibold">
                 Към сайта
             </Link>
-            <section className="md:flex w-4/5 justify-between gap-8">
-                <div className="w-96 text-center">
-                    <h1 className="mb-16">Добави картина</h1>
+            <section className="flex md:flex-row flex-col w-full md:w-4/5 justify-between gap-8">
+                <div className="text-center w-full md:w-96">
+                    <h1 className="md:mb-16 mb-4">Добави картина</h1>
                     <AddArtwork />
                 </div>
                 <div className="flex-1 text-center">
@@ -60,7 +60,7 @@ export default async function AdminPage() {
                                     </TableCell>
                                     <TableCell>{artwork.title}</TableCell>
                                     <TableCell>{categoryMap[artwork.category]}</TableCell>
-                                    <TableCell>{artwork.size}</TableCell>
+                                    <TableCell>{formatSize(artwork.length, artwork.width)}</TableCell>
                                     <TableCell>{artwork.price}</TableCell>
                                     <TableCell>
                                         <AdminButtons artworkId={artwork.id} />

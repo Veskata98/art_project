@@ -123,11 +123,27 @@ export const deleteArtwork = async (artworkId: string) => {
 
 export const createArtwork = async (formData: FormData) => {
     try {
-        console.log(formData);
-        await new Promise((resolve) => setTimeout(resolve, 5000));
+        const { title, category, surface, length, width, price } = Object.fromEntries(formData); // await supabase.from('artworks').insert([{ ...formData }]);
 
-        // await supabase.from('artworks').insert([{ ...formData }]);
-        // revalidatePath('/admin');
+        const { data } = await supabase.storage
+            .from('images')
+            .upload(`${title}_${Date.now()}.jpg`, formData.get('image') as File);
+
+        const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
+
+        await supabase.from('artworks').insert([
+            {
+                title,
+                category,
+                surface,
+                length: Number(length),
+                width: Number(width),
+                price: Number(price),
+                image: imageUrl,
+            },
+        ]);
+
+        revalidatePath('/admin');
     } catch (error) {
         console.log(error);
     }

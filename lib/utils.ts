@@ -25,3 +25,5 @@ export const categoryMap: any = {
     realism: 'Реализъм',
     impressionism: 'Импресионизъм',
 };
+
+export const formatSize = (length: number, width: number) => `${length} x ${width} см`;

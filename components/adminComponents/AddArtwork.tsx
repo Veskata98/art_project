@@ -1,9 +1,11 @@
 'use client';
 
-import { createArtwork } from '@/actions/artworkActions';
-import { categoryMap, surfaceMap } from '@/lib/utils';
 import { useRef } from 'react';
 import { useFormStatus } from 'react-dom';
+
+import { createArtwork } from '@/actions/artworkActions';
+
+import { categoryMap, surfaceMap } from '@/lib/utils';
 
 export const AddArtwork = () => {
     const ref = useRef<HTMLFormElement>(null);
@@ -76,7 +78,7 @@ const SubmitButton = () => {
             className="disabled:bg-zinc-300 bg-zinc-600 text-white p-2 rounded-lg w-full"
             disabled={pending}
         >
-            Добави
+            {pending ? 'Прикачване...' : 'Добави'}
         </button>
     );
 };

@@ -19,7 +19,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
     return (
         <>
             <Carousel
-                className="w-full"
+                className="w-9/12 md:w-full"
                 plugins={[
                     Autoplay({
                         delay: 5000,
