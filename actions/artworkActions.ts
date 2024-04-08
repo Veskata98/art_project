@@ -121,10 +121,13 @@ export const deleteArtwork = async (artworkId: string) => {
     }
 };
 
-export const createArtwork = async (artwork: Artwork) => {
+export const createArtwork = async (formData: FormData) => {
     try {
-        await supabase.from('artworks').insert([artwork]);
-        revalidatePath('/admin');
+        console.log(formData);
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+
+        // await supabase.from('artworks').insert([{ ...formData }]);
+        // revalidatePath('/admin');
     } catch (error) {
         console.log(error);
     }
