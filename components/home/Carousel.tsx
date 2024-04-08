@@ -4,9 +4,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
-import monalisa from '@/public/monalisa.webp';
-import car from '@/public/car.jpg';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Artwork } from '@/types';

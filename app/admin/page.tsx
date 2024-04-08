@@ -63,7 +63,7 @@ export default async function AdminPage() {
                                     <TableCell>{formatSize(artwork.length, artwork.width)}</TableCell>
                                     <TableCell>{artwork.price}</TableCell>
                                     <TableCell>
-                                        <AdminButtons artworkId={artwork.id} />
+                                        <AdminButtons artworkId={artwork.id} available={artwork.available} />
                                     </TableCell>
                                 </TableRow>
                             ))}

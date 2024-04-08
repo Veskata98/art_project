@@ -148,3 +148,12 @@ export const createArtwork = async (formData: FormData) => {
         console.log(error);
     }
 };
+
+export const changeAvailability = async (artworkId: string, available: boolean) => {
+    try {
+        await supabase.from('artworks').update({ available }).eq('id', artworkId);
+        revalidatePath('/admin');
+    } catch (error) {
+        console.log(error);
+    }
+};

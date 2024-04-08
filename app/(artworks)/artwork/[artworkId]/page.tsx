@@ -2,13 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { categoryMap, surfaceMap } from '@/lib/utils';
+import { categoryMap, formatSize, surfaceMap } from '@/lib/utils';
 
 import { Check, X } from 'lucide-react';
 
 import { ReturnButton } from '@/components/ReturnButton';
 
 import { getArtworkById } from '@/actions/artworkActions';
+import { format } from 'node:path/win32';
 
 interface ArtworkIdPageParams {
     params: {
@@ -30,14 +31,9 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
             <div className="md:flex gap-6">
                 <div className="flex flex-col justify-center items-center w-full h-[300px] md:h-[600px] relative">
-                    <Image
-                        src={artwork.image}
-                        alt={artwork.title}
-                        className="object-contain bg-zinc-100/50 p-2 shadow-md"
-                        fill
-                    />
+                    <Image src={artwork.image} alt={artwork.title} className="object-contain p-2 shadow-xl" fill />
                 </div>
-                <aside className="w-96 flex flex-col bg-zinc-100 rounded p-4 items-center justify-around shadow-md">
+                <aside className="w-96 flex flex-col rounded p-4 items-center justify-around shadow-xl">
                     <div className="text-center">
                         <h1 className="text-2xl font-semibold mb-2 text-center">{artwork?.title}</h1>
                         <p className="flex gap-2 justify-center items-center">
@@ -62,7 +58,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
 
                     <div className="flex flex-col gap-2 text-center">
                         <p>
-                            <span className="font-semibold">Размери:</span> {artwork?.size}
+                            <span className="font-semibold">Размери:</span> {formatSize(artwork.length, artwork.width)}
                         </p>
                         <p>
                             <span className="font-semibold">Повърхност:</span> {surfaceMap[artwork.surface]}

@@ -1,16 +1,20 @@
 'use client';
 
-import { Edit, Trash } from 'lucide-react';
+import { ArchiveRestore, ArchiveX, Trash } from 'lucide-react';
 
-import { deleteArtwork } from '@/actions/artworkActions';
+import { changeAvailability, deleteArtwork } from '@/actions/artworkActions';
 
 type AdminButtonsProps = {
     artworkId: string;
+    available: boolean;
 };
 
-export const AdminButtons = ({ artworkId }: AdminButtonsProps) => {
-    const onEditClick = () => {
-        console.log('Edit');
+export const AdminButtons = ({ artworkId, available }: AdminButtonsProps) => {
+    const updateAvailability = async () => {
+        const confirm = window.confirm(`Натисни OK, за да ${available ? 'архивираш' : 'възстановиш'} картината`);
+        if (confirm) {
+            await changeAvailability(artworkId, !available);
+        }
     };
 
     const onDeleteClick = async () => {
@@ -21,9 +25,9 @@ export const AdminButtons = ({ artworkId }: AdminButtonsProps) => {
     };
 
     return (
-        <div className="flex gap-4 justify-around">
-            <button onClick={onEditClick}>
-                <Edit />
+        <div className="flex gap-6 justify-around">
+            <button onClick={updateAvailability}>
+                {available ? <ArchiveX className="text-orange-500" /> : <ArchiveRestore className="text-emerald-500" />}
             </button>
             <button className="text-rose-500" onClick={onDeleteClick}>
                 <Trash />
