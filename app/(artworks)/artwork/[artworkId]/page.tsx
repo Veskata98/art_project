@@ -46,9 +46,12 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
 
                     <div className="mb-6">
                         {artwork.available ? (
-                            <p className="text-green-500 flex items-center gap-2 font-semibold">
-                                <Check className="w-5 h-5" /> Налична
-                            </p>
+                            <>
+                                <p className="text-green-500 flex items-center gap-2 font-semibold">
+                                    <Check className="w-5 h-5" /> Налична
+                                </p>
+                                <span className="">{artwork.price}</span>
+                            </>
                         ) : (
                             <p className="text-red-500 flex items-center gap-2 font-semibold">
                                 <X className="w-5 h-5" /> Не е налична
@@ -65,6 +68,9 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                         </p>
                     </div>
                 </aside>
+            </div>
+            <div className="shadow-xl">
+                <p className="p-8 mt-4 text-lg">Описание {artwork.description}</p>
             </div>
         </section>
     );

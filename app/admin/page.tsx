@@ -2,15 +2,26 @@ import { getAllArtworks } from '@/actions/artworkActions';
 import { AdminButtons } from '@/components/AdminButtons';
 import { AddArtwork } from '@/components/adminComponents/AddArtwork';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { supabase } from '@/lib/supabase';
 
 import { categoryMap, formatSize } from '@/lib/utils';
 import { Check, X } from 'lucide-react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function AdminPage() {
     const artworks = await getAllArtworks();
+
+    const { data: userData, error } = await supabase.auth.signInWithPassword({
+        email: 'art@abv.b',
+        password: '123123',
+    });
+
+    if (!userData.user) {
+        return redirect('/login');
+    }
 
     return (
         <>
