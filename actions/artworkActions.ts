@@ -4,10 +4,11 @@ import { revalidatePath } from 'next/cache';
 
 import { Artwork } from '@/types';
 
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/utils/supabase/server';
 
 export const getArchivedArtworks = async () => {
     try {
+        const supabase = createClient();
         const { data: artworks } = await supabase
             .from('artworks')
             .select()
@@ -24,6 +25,7 @@ export const getArchivedArtworks = async () => {
 
 export const getLatestArtworks = async () => {
     try {
+        const supabase = createClient();
         const { data: latestArtworks } = await supabase
             .from('artworks')
             .select()
@@ -41,6 +43,7 @@ export const getLatestArtworks = async () => {
 
 export const getArtworkById = async (artworkId: string) => {
     try {
+        const supabase = createClient();
         const { data: artwork } = await supabase.from('artworks').select().eq('id', artworkId).single();
         return artwork;
     } catch (error) {
@@ -51,6 +54,8 @@ export const getArtworkById = async (artworkId: string) => {
 
 export const getArtworksByCategory = async (category: string, page: number) => {
     try {
+        const supabase = createClient();
+
         const offset = (page - 1) * 6;
 
         const { data: artworks } = await supabase
@@ -76,6 +81,8 @@ export const getArtworksByCategory = async (category: string, page: number) => {
 
 export const getArtworksFromAllCategories = async (page: number) => {
     try {
+        const supabase = createClient();
+
         const offset = (page - 1) * 6;
 
         const { data: artworks } = await supabase
@@ -99,6 +106,9 @@ export const getArtworksFromAllCategories = async (page: number) => {
 
 export const getAllArtworks = async () => {
     try {
+        const supabase = createClient();
+        console.log('supabase', supabase);
+
         const { data: artworks } = await supabase
             .from('artworks')
             .select()
@@ -114,6 +124,7 @@ export const getAllArtworks = async () => {
 
 export const deleteArtwork = async (artworkId: string) => {
     try {
+        const supabase = createClient();
         await supabase.from('artworks').delete().eq('id', artworkId);
         revalidatePath('/admin');
     } catch (error) {
@@ -124,7 +135,7 @@ export const deleteArtwork = async (artworkId: string) => {
 export const createArtwork = async (formData: FormData) => {
     try {
         const { title, category, surface, length, width, price } = Object.fromEntries(formData); // await supabase.from('artworks').insert([{ ...formData }]);
-
+        const supabase = createClient();
         const { data } = await supabase.storage
             .from('images')
             .upload(`${title}_${Date.now()}.jpg`, formData.get('image') as File);
@@ -151,6 +162,7 @@ export const createArtwork = async (formData: FormData) => {
 
 export const changeAvailability = async (artworkId: string, available: boolean) => {
     try {
+        const supabase = createClient();
         await supabase.from('artworks').update({ available }).eq('id', artworkId);
         revalidatePath('/admin');
     } catch (error) {
