@@ -30,7 +30,7 @@ export const getLatestArtworks = async () => {
             .from('artworks')
             .select()
             .eq('available', true)
-            .limit(5)
+            .limit(10)
             .order('created_at', { ascending: false })
             .returns<Artwork[]>();
 
@@ -56,14 +56,14 @@ export const getArtworksByCategory = async (category: string, page: number) => {
     try {
         const supabase = createClient();
 
-        const offset = (page - 1) * 6;
+        const offset = (page - 1) * 8;
 
         const { data: artworks } = await supabase
             .from('artworks')
             .select()
             .eq('category', category)
             .eq('available', true)
-            .range(offset, offset + 5)
+            .range(offset, offset + 7)
             .order('created_at', { ascending: false });
 
         const { count: totalArtworks } = await supabase
@@ -83,13 +83,13 @@ export const getArtworksFromAllCategories = async (page: number) => {
     try {
         const supabase = createClient();
 
-        const offset = (page - 1) * 6;
+        const offset = (page - 1) * 8;
 
         const { data: artworks } = await supabase
             .from('artworks')
             .select()
             .eq('available', true)
-            .range(offset, offset + 5)
+            .range(offset, offset + 7)
             .order('created_at', { ascending: false });
 
         const { count: totalArtworks } = await supabase

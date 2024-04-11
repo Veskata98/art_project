@@ -8,5 +8,6 @@ export type Artwork = {
     surface: string;
     category: string;
     available: boolean;
+    description: string;
     price: number;
 };

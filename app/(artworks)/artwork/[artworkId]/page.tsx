@@ -11,6 +11,7 @@ import { ReturnButton } from '@/components/ReturnButton';
 import { getArtworkById } from '@/actions/artworkActions';
 import { ShareButtons } from '@/components/ShareButtons';
 import { Artwork } from '@/types';
+import { Separator } from '@/components/ui/separator';
 
 interface ArtworkIdPageParams {
     params: {
@@ -30,13 +31,13 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     }
 
     return (
-        <section className="relative w-full lg:w-4/6 md:w-5/6">
+        <section className="relative w-full xl:w-4/6 lg:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
             <div className="md:flex gap-6 mb-2">
                 <div className="flex flex-col justify-center items-center w-full h-[300px] md:h-[600px] relative">
                     <Image src={artwork.image} alt={artwork.title} className="object-contain p-2 shadow-xl" fill />
                 </div>
-                <aside className="w-96 flex flex-col rounded p-4 items-center justify-around shadow-xl">
+                <aside className="md:w-[30rem] w-full flex flex-col rounded p-4 items-center justify-around md:shadow-xl">
                     <div className="text-center">
                         <h1 className="text-2xl font-semibold mb-2 text-center">{artwork?.title}</h1>
                         <p className="flex gap-2 justify-center items-center">
@@ -73,8 +74,10 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                 </aside>
             </div>
             <ShareButtons url={`${url}/artworks/${artwork.id}`} />
-            <div className="shadow-xl">
-                <p className="p-8 mt-2 text-lg min-h-40">Описание {''}</p>
+            <Separator className="my-2" />
+            <div className="md:shadow-xl md:p-8 min-h-40 mt-2">
+                <h5 className="text-lg mb-2">Допълнителна информация</h5>
+                <p>{artwork.description}</p>
             </div>
         </section>
     );

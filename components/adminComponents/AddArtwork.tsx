@@ -7,6 +7,8 @@ import { createArtwork } from '@/actions/artworkActions';
 
 import { categoryMap, surfaceMap } from '@/lib/utils';
 
+import { Textarea } from '@/components/ui/textarea';
+
 export const AddArtwork = () => {
     const ref = useRef<HTMLFormElement>(null);
 
@@ -63,7 +65,15 @@ export const AddArtwork = () => {
                 placeholder="Цена"
                 className="w-full p-2 mb-2 border-2 rounded-md"
             />
-            <input required type="file" name="image" className="w-full p-2 mb-2" />
+            <Textarea
+                name="description"
+                placeholder="Описание"
+                className="w-full p-2 mb-2 border-2 rounded-md text-md"
+            />
+            <label htmlFor="image" className="font-semibold">
+                Качи изображение
+            </label>
+            <input required type="file" name="image" className="w-full p-2 mb-2 text-center" />
             <SubmitButton />
         </form>
     );

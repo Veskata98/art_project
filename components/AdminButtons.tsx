@@ -26,10 +26,10 @@ export const AdminButtons = ({ artworkId, available }: AdminButtonsProps) => {
 
     return (
         <div className="flex gap-6 justify-around">
-            <button onClick={updateAvailability}>
+            <button onClick={updateAvailability} title={`${available ? 'Архивирай' : 'Възстанови'}`}>
                 {available ? <ArchiveX className="text-orange-500" /> : <ArchiveRestore className="text-emerald-500" />}
             </button>
-            <button className="text-rose-500" onClick={onDeleteClick}>
+            <button title="Изтрий" className="text-rose-500" onClick={onDeleteClick}>
                 <Trash />
             </button>
         </div>
