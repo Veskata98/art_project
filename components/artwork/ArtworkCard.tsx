@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { categoryMap, cn, surfaceMap } from '@/lib/utils';
+import { categoryMap, cn, formatSize, surfaceMap } from '@/lib/utils';
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -12,11 +12,11 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
             <Card>
                 <CardContent
                     className="p-2 rounded shadow-none flex flex-col 
-                    justify-center items-center w-96"
+                    justify-center items-center w-72"
                 >
                     <div className="relative">
                         <Image
-                            className={cn('rounded-t w-full h-96 object-contain', !artwork.available && 'opacity-30')}
+                            className={cn('rounded-t w-full h-72 object-contain', !artwork.available && 'opacity-30')}
                             src={artwork.image}
                             alt={artwork.title}
                             width={400}
@@ -37,7 +37,7 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                         <p className="font-semibold text-sm">{categoryMap[artwork.category]}</p>
 
                         <div className="flex flex-col mt-2 text-center italic">
-                            <p className="text-sm">Размери: {artwork.size}</p>
+                            <p className="text-sm">Размери: {formatSize(artwork.length, artwork.width)}</p>
                             <p className="text-sm">Повърхност: {surfaceMap[artwork.surface]}</p>
                         </div>
                     </CardFooter>

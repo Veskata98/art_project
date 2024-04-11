@@ -28,7 +28,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
             >
                 <CarouselContent>
                     {latestArtworks.map((artwork) => (
-                        <CarouselItem key={artwork.id} className="md:basis-1/2 lg:basis-1/3">
+                        <CarouselItem key={artwork.id} className="md:basis-1/2 xl:basis-1/3 2xl:basis-1/4">
                             <Link href={`/artwork/${artwork.id}`}>
                                 <Card>
                                     <CardContent className="p-4 flex justify-center lg:h-[500px] md:h-[450px] h-[400px]">

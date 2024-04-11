@@ -107,7 +107,6 @@ export const getArtworksFromAllCategories = async (page: number) => {
 export const getAllArtworks = async () => {
     try {
         const supabase = createClient();
-        console.log('supabase', supabase);
 
         const { data: artworks } = await supabase
             .from('artworks')
@@ -134,7 +133,8 @@ export const deleteArtwork = async (artworkId: string) => {
 
 export const createArtwork = async (formData: FormData) => {
     try {
-        const { title, category, surface, length, width, price } = Object.fromEntries(formData); // await supabase.from('artworks').insert([{ ...formData }]);
+        const { title, category, surface, length, width, price } = Object.fromEntries(formData);
+        // await supabase.from('artworks').insert([{ ...formData }]);
         const supabase = createClient();
         const { data } = await supabase.storage
             .from('images')

@@ -9,7 +9,8 @@ import { Check, X } from 'lucide-react';
 import { ReturnButton } from '@/components/ReturnButton';
 
 import { getArtworkById } from '@/actions/artworkActions';
-import { format } from 'node:path/win32';
+import { ShareButtons } from '@/components/ShareButtons';
+import { Artwork } from '@/types';
 
 interface ArtworkIdPageParams {
     params: {
@@ -17,10 +18,12 @@ interface ArtworkIdPageParams {
     };
 }
 
+const url = '';
+
 export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     const artworkId = params.artworkId;
 
-    const artwork = await getArtworkById(artworkId);
+    const artwork: Artwork = await getArtworkById(artworkId);
 
     if (!artwork) {
         return redirect('/');
@@ -29,7 +32,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     return (
         <section className="relative w-full lg:w-4/6 md:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
-            <div className="md:flex gap-6">
+            <div className="md:flex gap-6 mb-2">
                 <div className="flex flex-col justify-center items-center w-full h-[300px] md:h-[600px] relative">
                     <Image src={artwork.image} alt={artwork.title} className="object-contain p-2 shadow-xl" fill />
                 </div>
@@ -46,12 +49,12 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
 
                     <div className="mb-6">
                         {artwork.available ? (
-                            <>
+                            <div className="flex flex-col items-center">
                                 <p className="text-green-500 flex items-center gap-2 font-semibold">
                                     <Check className="w-5 h-5" /> Налична
                                 </p>
-                                <span className="">{artwork.price}</span>
-                            </>
+                                <span className="">Цена: {artwork.price} лв</span>
+                            </div>
                         ) : (
                             <p className="text-red-500 flex items-center gap-2 font-semibold">
                                 <X className="w-5 h-5" /> Не е налична
@@ -69,8 +72,9 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                     </div>
                 </aside>
             </div>
+            <ShareButtons url={`${url}/artworks/${artwork.id}`} />
             <div className="shadow-xl">
-                <p className="p-8 mt-4 text-lg">Описание {artwork.description}</p>
+                <p className="p-8 mt-2 text-lg min-h-40">Описание {''}</p>
             </div>
         </section>
     );
