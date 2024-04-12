@@ -31,13 +31,12 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
                         <CarouselItem key={artwork.id} className="md:basis-1/2 xl:basis-1/3">
                             <Link href={`/artwork/${artwork.id}`}>
                                 <Card>
-                                    <CardContent className="p-4 flex justify-center lg:h-[500px] md:h-[450px] h-[400px]">
+                                    <CardContent className="relative p-4 flex justify-center items-center lg:h-[500px] md:h-[450px] h-[400px]">
                                         <Image
                                             src={artwork.image}
                                             alt={artwork.title}
-                                            className="w-full object-contain"
-                                            width={600}
-                                            height={600}
+                                            className="w-full object-contain md:p-4 p-2"
+                                            fill
                                         />
                                     </CardContent>
                                 </Card>

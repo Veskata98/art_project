@@ -133,8 +133,8 @@ export const deleteArtwork = async (artworkId: string) => {
 
 export const createArtwork = async (formData: FormData) => {
     try {
-        const { title, category, surface, length, width, price } = Object.fromEntries(formData);
-        // await supabase.from('artworks').insert([{ ...formData }]);
+        const { title, category, surface, length, width, price, frame } = Object.fromEntries(formData);
+
         const supabase = createServerClient();
         const { data } = await supabase.storage
             .from('images')
@@ -147,6 +147,7 @@ export const createArtwork = async (formData: FormData) => {
                 title,
                 category,
                 surface,
+                frame: frame === 'on' ? true : false,
                 length: Number(length),
                 width: Number(width),
                 price: Number(price),

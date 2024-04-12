@@ -14,13 +14,12 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                     className="p-2 rounded shadow-none flex flex-col 
                     justify-center items-center w-72"
                 >
-                    <div className="relative">
+                    <div className="relative w-[280px] h-[280px]">
                         <Image
-                            className={cn('rounded-t w-full h-72 object-contain', !artwork.available && 'opacity-30')}
+                            className={cn('rounded object-contain overflow-hidden', !artwork.available && 'opacity-30')}
                             src={artwork.image}
                             alt={artwork.title}
-                            width={400}
-                            height={400}
+                            fill
                         />
                         {!artwork.available && (
                             <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">

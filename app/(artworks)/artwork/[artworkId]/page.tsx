@@ -32,12 +32,12 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     return (
         <section className="relative w-full xl:w-4/6 lg:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
-            <div className="md:flex gap-6 mb-2">
+            <div className="flex md:flex-row flex-col gap-6 mb-2">
                 <div className="flex flex-col justify-center items-center w-full h-[300px] md:h-[600px] relative">
                     <Image src={artwork.image} alt={artwork.title} className="object-contain p-2 shadow-xl" fill />
                 </div>
                 <aside className="md:w-[30rem] w-full flex flex-col rounded p-4 items-center justify-around md:shadow-xl">
-                    <div className="text-center">
+                    <div className="text-center mb-6 md:mb-0">
                         <h1 className="text-2xl font-semibold mb-2 text-center">{artwork?.title}</h1>
                         <p className="flex gap-2 justify-center items-center">
                             <span className="font-semibold">Категория:</span>{' '}
@@ -53,7 +53,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                                 <p className="text-green-500 flex items-center gap-2 font-semibold">
                                     <Check className="w-5 h-5" /> Налична
                                 </p>
-                                <span className="">Цена: {artwork.price} лв</span>
+                                <span className="">{artwork.price} лв</span>
                             </div>
                         ) : (
                             <p className="text-red-500 flex items-center gap-2 font-semibold">
@@ -62,19 +62,29 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                         )}
                     </div>
 
-                    <div className="flex flex-col gap-2 text-center">
-                        <p>
-                            <span className="font-semibold">Размери:</span> {formatSize(artwork.length, artwork.width)}
+                    <div className="flex flex-col gap-4 text-center p-3 rounded-md shadow-lg border border-gray-100 w-full">
+                        <p className="text-lg flex justify-center items-center gap-2">
+                            <span className="font-semibold text-zinc-800">Рамка:</span>
+                            {artwork.frame ? (
+                                <Check className="w-5 h-5 bg-emerald-500" />
+                            ) : (
+                                <X className="w-5 h-5 text-red-500" />
+                            )}
                         </p>
-                        <p>
-                            <span className="font-semibold">Повърхност:</span> {surfaceMap[artwork.surface]}
+                        <p className="text-lg">
+                            <span className="font-semibold text-zinc-800">Размери:</span>{' '}
+                            <span className="text-gray-800">{formatSize(artwork.length, artwork.width)}</span>
+                        </p>
+                        <p className="text-lg">
+                            <span className="font-semibold text-zinc-800">Повърхност:</span>{' '}
+                            <span className="text-gray-800">{surfaceMap[artwork.surface]}</span>
                         </p>
                     </div>
                 </aside>
             </div>
             <ShareButtons url={`${url}/artworks/${artwork.id}`} />
-            <Separator className="my-2" />
-            <div className="md:shadow-xl md:p-8 min-h-40 mt-2">
+            <Separator className="md:my-2 my-4" />
+            <div className="md:shadow-xl md:p-8 min-h-40 mt-2 mb-4 md:mb-0">
                 <h5 className="text-lg mb-2">Допълнителна информация</h5>
                 <p>{artwork.description}</p>
 

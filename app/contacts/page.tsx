@@ -14,7 +14,7 @@ export default function ContactPage() {
                     </a>
                 </li>
             </ul>
-            <div className="flex justify-between items-center w-full">
+            <div className="flex md:flex-row flex-col gap-8 md:gap-16 justify-between items-center">
                 <Link href="https://www.facebook.com" className="flex items-center flex-col">
                     <h3 className="text-2xl">Facebook</h3>
                     <i aria-hidden className="fa-brands fa-facebook text-4xl mb-2"></i>

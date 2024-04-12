@@ -9,5 +9,6 @@ export type Artwork = {
     category: string;
     available: boolean;
     description: string;
+    frame: boolean;
     price: number;
 };

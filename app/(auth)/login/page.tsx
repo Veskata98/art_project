@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 
 export default function LoginPage() {
     return (
-        <form action={login} className="flex flex-col gap-6 w-96">
+        <form action={login} className="flex flex-col gap-6 w-96 p-4">
             <Input type="email" name="email" placeholder="Имейл" required />
             <Input type="password" name="password" placeholder="Парола" required />
             <Button>Влизане</Button>

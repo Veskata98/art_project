@@ -6,6 +6,7 @@ import { AddArtwork } from '@/components/adminComponents/AddArtwork';
 import { Dashboard } from '@/components/adminComponents/Dashboard';
 
 import { createClient } from '@/utils/supabase/server';
+import { Separator } from '@/components/ui/separator';
 
 export default async function AdminPage() {
     const artworks = await getAllArtworks();
@@ -29,6 +30,7 @@ export default async function AdminPage() {
                     <h1 className="lg:mb-16 mb-4">Добави картина</h1>
                     <AddArtwork />
                 </div>
+                <Separator className="md:hidden" />
                 <Dashboard artworks={artworks} />
             </section>
         </>

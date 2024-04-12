@@ -14,7 +14,7 @@ export const ArtworksSection = ({ artworks, totalArtworkCount, heading }: Artwor
         <div className="flex-1">
             <h1 className="text-2xl font-bold text-center mb-2">{heading ? heading : 'Всички Картини'}</h1>
             {artworks.length === 0 ? (
-                <div className="w-full mt-8 flex justify-center items-center">Няма намерени картини</div>
+                <div className="w-full mt-4 flex justify-center items-center">Няма намерени картини</div>
             ) : (
                 <>
                     <div className="flex gap-4 flex-wrap justify-center">
