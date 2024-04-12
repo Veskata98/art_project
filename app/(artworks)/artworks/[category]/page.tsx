@@ -4,7 +4,7 @@ import { ArtworksSection } from '@/components/artworks/ArtworksSection';
 
 import { categoryMap } from '@/lib/utils';
 
-import { getArtworksByCategory } from '@/app/actions/artworkActions';
+import { getArtworksByCategory } from '@/actions/artworkActions';
 
 interface ArtworksCategoryPageProps {
     params: {

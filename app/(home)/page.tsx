@@ -7,7 +7,7 @@ export default async function HomePage() {
 
     return (
         <div className="flex flex-col items-center md:w-3/4">
-            <h1 className="text-3xl font-bold mb-2">Добре дошли в моята галерия</h1>
+            <h1 className="text-3xl font-bold mb-2 text-center">Добре дошли в моята галерия</h1>
             <p className="text-lg mb-4 text-center">
                 Изкуството е начин на живот. Разгледайте моите произведения и се насладете на красотата, която те носят.
             </p>

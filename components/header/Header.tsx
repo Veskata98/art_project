@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { MobileToggle } from '../MobileToggle';
 
 export const Header = () => {
     const path = usePathname();
@@ -10,9 +11,9 @@ export const Header = () => {
     return (
         <nav className="flex justify-between items-center p-4 bg-gray-800 text-white md:px-8 max-h-16">
             <Link href="/">
-                <h1 className="text-2xl font-bold">Art Gallery</h1>
+                <h1 className="text-lg md:text-2xl font-bold text-center">Art Gallery</h1>
             </Link>
-            <ul className="flex space-x-4">
+            <ul className="md:flex hidden space-x-4">
                 <li>
                     <Link href="/" className={isActive('/') ? 'underline' : ''}>
                         Начало
@@ -39,6 +40,7 @@ export const Header = () => {
                     </Link>
                 </li>
             </ul>
+            <MobileToggle className="ml-auto md:hidden absolute right-2 top-2" isActive={isActive} />
         </nav>
     );
 };

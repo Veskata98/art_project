@@ -23,7 +23,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Header />
                 <main
-                    className="flex flex-col items-center justify-between p-10"
+                    className="flex flex-col items-center justify-between md:p-10 p-4"
                     style={{ minHeight: 'calc(100vh - 120px)' }}
                 >
                     {children}

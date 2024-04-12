@@ -77,6 +77,15 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
             <div className="md:shadow-xl md:p-8 min-h-40 mt-2">
                 <h5 className="text-lg mb-2">Допълнителна информация</h5>
                 <p>{artwork.description}</p>
+
+                <Separator className="my-2" />
+                <h2 className="text-lg mb-2">Доставка и гаранция</h2>
+                <p className="text-justify">
+                    При покупка на картина, гарантирамe внимателно опаковане и безпроблемна доставка до вашето населено
+                    място чрез услугите на Еконт или Спиди. За клиентите от град Пловдив осигурявамe възможност за лично
+                    вземане. Всеки продукт ще бъде придружен с официален сертификат за авторство, гарантирайки, че това
+                    което купувате е оригинално и уникално изкуство.
+                </p>
             </div>
         </section>
     );
