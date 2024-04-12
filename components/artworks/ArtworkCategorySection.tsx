@@ -9,15 +9,15 @@ export const ArtworkCategorySection = () => {
     const path = usePathname();
 
     return (
-        <aside className="w-64 text-zinc-800 p-4 flex flex-col pt-9">
-            <ul className="flex flex-col gap-4 text-lg font-semibold">
+        <aside className="md:w-64 text-zinc-800 p-4 flex flex-col md:pt-9 w-full">
+            <ul className="flex md:flex-col gap-4 text-lg font-semibold overflow-x-auto">
                 {Object.entries(categoryMap).map(([category, label]) => (
                     <li key={category}>
                         <Link
                             href={`/artworks/${category}`}
                             className={cn(
-                                path === `/artworks/${category}` && 'underline',
-                                path === '/artworks' && category === '/' && 'underline'
+                                path === `/artworks/${category}` && 'md:underline',
+                                path === '/artworks' && category === '/' && 'md:underline'
                             )}
                         >
                             {label as string}
