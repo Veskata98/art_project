@@ -1,16 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-
-import { categoryMap, formatSize, surfaceMap } from '@/lib/utils';
-
 import { Check, X } from 'lucide-react';
 
-import { ReturnButton } from '@/components/ReturnButton';
-
 import { getArtworkById } from '@/actions/artworkActions';
-import { ShareButtons } from '@/components/ShareButtons';
+
+import { categoryMap, formatSize, surfaceMap } from '@/lib/utils';
 import { Artwork } from '@/types';
+
+import { ReturnButton } from '@/components/ReturnButton';
+import { ShareButtons } from '@/components/ShareButtons';
 import { Separator } from '@/components/ui/separator';
 
 interface ArtworkIdPageParams {
