@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { ArtworksSection } from '@/components/artworks/ArtworksSection';
 
-import { categoryMap } from '@/lib/utils';
+import { categoryMap } from '@/utils/helpers';
 
 import { getArtworksByCategory } from '@/actions/artworkActions';
 

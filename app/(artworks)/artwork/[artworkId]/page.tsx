@@ -5,7 +5,7 @@ import { Check, X } from 'lucide-react';
 
 import { getArtworkById } from '@/actions/artworkActions';
 
-import { categoryMap, formatSize, surfaceMap } from '@/lib/utils';
+import { categoryMap, formatSize, surfaceMap } from '@/utils/helpers';
 import { Artwork } from '@/types';
 
 import { ReturnButton } from '@/components/ReturnButton';

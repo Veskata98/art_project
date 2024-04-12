@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { categoryMap, cn } from '@/lib/utils';
+import { categoryMap, cn } from '@/utils/helpers';
 
 export const ArtworkCategorySection = () => {
     const path = usePathname();

@@ -4,7 +4,7 @@ import { Check, X } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { AdminButtons } from '@/components/AdminButtons';
 
-import { categoryMap, formatSize } from '@/lib/utils';
+import { categoryMap, formatSize } from '@/utils/helpers';
 import { Artwork } from '@/types';
 
 type DashboardProps = {

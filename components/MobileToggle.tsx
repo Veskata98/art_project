@@ -4,7 +4,7 @@ import { Menu } from 'lucide-react';
 
 import { SheetContent, SheetTrigger, Sheet } from '@/components/ui/sheet';
 import { Button } from './ui/button';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/helpers';
 import { Separator } from './ui/separator';
 import { useState } from 'react';
 

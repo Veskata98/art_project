@@ -26,7 +26,7 @@ export const getArchivedArtworks = async () => {
 
 export const getLatestArtworks = async () => {
     try {
-        const supabase = createServerClient();
+        const supabase = createBrowserClient();
         const { data: latestArtworks } = await supabase
             .from('artworks')
             .select()

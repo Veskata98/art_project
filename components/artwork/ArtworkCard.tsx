@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { categoryMap, cn, formatSize, surfaceMap } from '@/lib/utils';
+import { categoryMap, cn, formatSize, surfaceMap } from '@/utils/helpers';
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';

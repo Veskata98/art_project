@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom';
 
 import { createArtwork } from '@/actions/artworkActions';
 
-import { categoryMap, surfaceMap } from '@/lib/utils';
+import { categoryMap, surfaceMap } from '@/utils/helpers';
 
 import { Textarea } from '@/components/ui/textarea';
 
