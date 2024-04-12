@@ -19,7 +19,7 @@ export const AddArtwork = () => {
                 ref.current?.reset();
             }}
             ref={ref}
-            className="flex flex-col gap-3 w-full"
+            className="flex flex-col gap-3 w-full md:w-3/4 mx-auto px-4 md:px-0"
         >
             <input
                 required
