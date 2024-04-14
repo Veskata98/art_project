@@ -15,7 +15,7 @@ interface PaginationComponentProps {
     artworkCount: number;
 }
 
-const ARTWORKS_PER_PAGE = 6;
+const ARTWORKS_PER_PAGE = 8;
 
 export const PaginationComponent = ({ artworkCount }: PaginationComponentProps) => {
     const path = usePathname();

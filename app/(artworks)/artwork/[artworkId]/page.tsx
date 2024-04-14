@@ -11,6 +11,7 @@ import { Artwork } from '@/types';
 import { ReturnButton } from '@/components/ReturnButton';
 import { ShareButtons } from '@/components/ShareButtons';
 import { Separator } from '@/components/ui/separator';
+import { SimilarArtworks } from '@/components/artworks/SimilarArtworks';
 
 interface ArtworkIdPageParams {
     params: {
@@ -28,7 +29,6 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     if (!artwork) {
         return redirect('/');
     }
-
     return (
         <section className="relative w-full xl:w-4/6 lg:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />
@@ -66,9 +66,10 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                         <p className="text-lg flex justify-center items-center gap-2">
                             <span className="font-semibold text-zinc-800">Рамка:</span>
                             {artwork.frame ? (
-                                <Check className="w-5 h-5 bg-emerald-500" />
+                                <Check className="w-5 h-5 text-emerald-500" />
                             ) : (
-                                <X className="w-5 h-5 text-red-500" />
+                                // <X className="w-5 h-5 text-red-500" />
+                                <span>Без</span>
                             )}
                         </p>
                         <p className="text-lg">
@@ -86,7 +87,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
             <Separator className="md:my-2 my-4" />
             <div className="md:shadow-xl md:p-8 min-h-40 mt-2 mb-4 md:mb-0">
                 <h5 className="text-lg mb-2">Допълнителна информация</h5>
-                <p>{artwork.description}</p>
+                <p className="mb-10">{artwork.description}</p>
 
                 <Separator className="my-2" />
                 <h2 className="text-lg mb-2">Доставка и гаранция</h2>
@@ -97,6 +98,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                     което купувате е оригинално и уникално изкуство.
                 </p>
             </div>
+            <SimilarArtworks category={artwork.category} id={artwork.id} />
         </section>
     );
 }

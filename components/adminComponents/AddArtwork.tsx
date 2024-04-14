@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 
 import { createArtwork } from '@/actions/artworkActions';
@@ -9,19 +9,44 @@ import { categoryMap, surfaceMap } from '@/utils/helpers';
 
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import Image from 'next/image';
 
 export const AddArtwork = () => {
+    const [imagePreview, setImagePreview] = useState<File | null>(null);
     const ref = useRef<HTMLFormElement>(null);
 
     return (
         <form
             action={async (formData) => {
                 await createArtwork(formData);
-                ref.current?.reset();
+                // ref.current?.reset();
+                // setImagePreview(null);
             }}
             ref={ref}
             className="flex flex-col gap-3 w-full md:w-3/4 mx-auto px-4 md:px-0"
         >
+            {' '}
+            <label htmlFor="image" className="font-semibold">
+                Качи изображение
+            </label>
+            <input
+                required
+                type="file"
+                name="image"
+                onChange={(e) => setImagePreview(e.target.files?.[0] || null)}
+                className="w-full p-2 mb-2 text-center"
+            />
+            {imagePreview && (
+                <div className="flex flex-col justify-center items-center pt-2 pb-4">
+                    <Image
+                        src={URL.createObjectURL(imagePreview)}
+                        alt="Preview"
+                        width={256}
+                        height={256}
+                        className="rounded"
+                    />
+                </div>
+            )}
             <input required type="text" name="title" placeholder="Име" className="w-full p-2  border-2 rounded-md" />
             <div className="flex items-center gap-4">
                 <label htmlFor="frame" className="">
@@ -45,7 +70,6 @@ export const AddArtwork = () => {
                     </option>
                 ))}
             </select>
-
             <input
                 required
                 type="number"
@@ -72,10 +96,6 @@ export const AddArtwork = () => {
                 placeholder="Описание"
                 className="w-full p-2 mb-2 border-2 rounded-md text-md"
             />
-            <label htmlFor="image" className="font-semibold">
-                Качи изображение
-            </label>
-            <input required type="file" name="image" className="w-full p-2 mb-2 text-center" />
             <SubmitButton />
         </form>
     );

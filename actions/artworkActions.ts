@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 import { Artwork } from '@/types';
 
@@ -133,12 +133,13 @@ export const deleteArtwork = async (artworkId: string) => {
 
 export const createArtwork = async (formData: FormData) => {
     try {
-        const { title, category, surface, length, width, price, frame } = Object.fromEntries(formData);
+        const { title, category, surface, length, width, price, frame, description } = Object.fromEntries(formData);
+        const file = formData.get('image') as File;
 
         const supabase = createServerClient();
         const { data } = await supabase.storage
             .from('images')
-            .upload(`${title}_${Date.now()}.jpg`, formData.get('image') as File);
+            .upload(`${title}_${Date.now()}.${file.name.split('.')[1]}`, file);
 
         const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
 
@@ -147,6 +148,7 @@ export const createArtwork = async (formData: FormData) => {
                 title,
                 category,
                 surface,
+                description,
                 frame: frame === 'on' ? true : false,
                 length: Number(length),
                 width: Number(width),
@@ -168,5 +170,23 @@ export const changeAvailability = async (artworkId: string, available: boolean) 
         revalidatePath('/admin');
     } catch (error) {
         console.log(error);
+    }
+};
+
+export const getSimilarArtworks = async (category: string, artworkId: string) => {
+    try {
+        const supabase = createBrowserClient();
+        const { data: similarArtworks } = await supabase
+            .from('artworks')
+            .select()
+            .eq('category', category)
+            .neq('id', artworkId)
+            .limit(12)
+            .order('created_at', { ascending: false });
+
+        return similarArtworks || [];
+    } catch (error) {
+        console.log(error);
+        return [];
     }
 };
