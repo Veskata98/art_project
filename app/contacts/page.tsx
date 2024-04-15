@@ -1,34 +1,51 @@
+import { Separator } from '@/components/ui/separator';
+import { Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ContactPage() {
     return (
-        <section className="flex h-full flex-col justify-center items-center mx-auto p-8 text-center w-full">
-            <h1 className="text-2xl mb-4">Контакти</h1>
-            <p className="text-lg mb-8">За връзка с мен, моля използвайте следните контакти:</p>
-            <ul className="mb-8">
-                <li className="text-lg mb-2">Телефон: 0888 888 888</li>
-                <li className="text-lg mb-2">
-                    Имейл:{' '}
-                    <a href="mailto:test@gmail.com" className="text-blue-500">
-                        test@gmail.com
-                    </a>
-                </li>
-            </ul>
-            <div className="flex md:flex-row flex-col gap-8 md:gap-16 justify-between items-center">
-                <Link href="https://www.facebook.com" className="flex items-center flex-col">
-                    <h3 className="text-2xl">Facebook</h3>
-                    <i aria-hidden className="fa-brands fa-facebook text-4xl mb-2"></i>
-                    <span>www.facebook.com</span>
-                </Link>
-                <Link href="https://www.instagram.com" className="flex items-center flex-col">
-                    <h3 className="text-2xl">Instagram</h3>
-                    <i aria-hidden className="fa-brands fa-instagram text-4xl mb-2"></i>
-                    <span>www.instagram.com</span>
-                </Link>
+        <section className="h-full p-8 xl:w-2/3 lg:w-3/4 w-full">
+            <div className="lg:flex mb-8 gap-4 justify-around">
+                <div className="flex flex-col items-center justify-center text-center">
+                    <h1 className="text-2xl mb-4">Контакти</h1>
+                    <p className="text-lg mb-8">За връзка с мен, моля използвайте следните контакти:</p>
+                    <ul className="mb-8">
+                        <li className="text-lg mb-2">Телефон: 0888 888 888</li>
+                        <li className="text-lg mb-2">
+                            Имейл:{' '}
+                            <a href="mailto:test@gmail.com" className="text-blue-500">
+                                test@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                    <div className="flex md:flex-row flex-col gap-8 md:gap-16 justify-between items-center">
+                        <Link href="https://www.facebook.com" className="flex items-center flex-col">
+                            <Facebook size={32} />
+                            <span>www.facebook.com</span>
+                        </Link>
+                        <Link href="https://www.instagram.com" className="flex items-center flex-col">
+                            <Instagram size={32} />
+                            <span>www.instagram.com</span>
+                        </Link>
+                    </div>
+                </div>
+                <Separator className="my-4 lg:hidden" />
+                <div className="flex flex-col justify-center items-center">
+                    <div className="w-full lg:mt-0 text-center">
+                        <p className="font-semibold">Адрес за връзка:</p>
+                        <p className="mb-2">гр. Пловдив, ул. Тракия 60А</p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2958.682066969948!2d24.7369521!3d42.1356891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14acd1cab3f9f975%3A0x82732e85acf25b90!2sTsentarPlovdiv%20Center%2C%20ulitsa%20Trakia%2060%D0%90%2C%204002%20Plovdiv!5e0!3m2!1sen!2sbg!4v1713181735008!5m2!1sen!2sbg"
+                            style={{ border: 0 }}
+                            className="border-0 lg:w-[500px] h-[400px] w-full"
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                </div>
             </div>
-            <div className="mt-10 md:w-1/2">
-                <h2 className="text-xl mb-2">Доставка и гаранция</h2>
-                <p className="font-semibold">
+            <div>
+                <h2 className="text-xl mb-2 text-center">Доставка и гаранция</h2>
+                <p className="font-semibold text-center">
                     При покупка на картина, гарантирамe внимателно опаковане и безпроблемна доставка до вашето населено
                     място чрез услугите на Еконт или Спиди. За клиентите от град Пловдив осигурявамe възможност за лично
                     вземане.
