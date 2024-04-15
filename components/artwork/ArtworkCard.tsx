@@ -41,6 +41,13 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                             <p className="text-sm">Размери: {formatSize(artwork.length, artwork.width)}</p>
                             <p className="text-sm">Повърхност: {surfaceMap[artwork.surface]}</p>
                         </div>
+
+                        {artwork.available && (
+                            <>
+                                <span className="text-lg font-bold mt-2 text-zinc-600">{artwork.price} лв</span>
+                                <Separator className="w-28 bg-zinc-200" />
+                            </>
+                        )}
                     </CardFooter>
                 </CardContent>
             </Card>

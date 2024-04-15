@@ -11,9 +11,8 @@ export default function AboutPage() {
             <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
                 <h1 className="text-3xl font-semibold mb-4">За Мен</h1>
                 <p className="text-lg mb-4">
-                    Здравейте! <br className="mb-2" />
-                    Аз се казвам Петър Йорданов, самоук художник, който обича да изразява своите идеи чрез различни
-                    техники за рисуване.
+                    Казвам се Петър Йорданов, самоук художник, който обича да изразява своите идеи чрез различни техники
+                    за рисуване.
                 </p>
                 <p className="text-lg mb-4">
                     Моите творби са плод на любовта ми към изкуството и отражават моите размисли и емоции.
