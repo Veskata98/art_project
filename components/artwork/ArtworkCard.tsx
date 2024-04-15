@@ -30,8 +30,10 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
                         )}
                     </div>
                     <Separator className="mt-2" />
-                    <CardFooter className="flex flex-col mt-2">
-                        <h2 className="text-xl font-bold">{artwork.title}</h2>
+                    <CardFooter className="flex flex-col mt-2 p-2 pt-0 max-w-full">
+                        <h2 className="text-lg font-bold mb-4 truncate overflow-hidden w-full text-center">
+                            {artwork.title}
+                        </h2>
 
                         <p className="font-semibold text-sm">{categoryMap[artwork.category]}</p>
 

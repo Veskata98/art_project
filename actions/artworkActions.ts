@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 import { Artwork } from '@/types';
 
@@ -105,6 +105,25 @@ export const getArtworksFromAllCategories = async (page: number) => {
     }
 };
 
+export const getSimilarArtworks = async (category: string, artworkId: string) => {
+    try {
+        const supabase = createBrowserClient();
+        const { data: similarArtworks } = await supabase
+            .from('artworks')
+            .select()
+            .eq('category', category)
+            .eq('available', true)
+            .neq('id', artworkId)
+            .limit(12)
+            .order('created_at', { ascending: false });
+
+        return similarArtworks || [];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
 export const getAllArtworks = async () => {
     try {
         const supabase = createServerClient();
@@ -158,6 +177,7 @@ export const createArtwork = async (formData: FormData) => {
         ]);
 
         revalidatePath('/admin');
+        revalidatePath('/');
     } catch (error) {
         console.log(error);
     }
@@ -167,24 +187,21 @@ export const changeAvailability = async (artworkId: string, available: boolean) 
     try {
         const supabase = createServerClient();
         await supabase.from('artworks').update({ available }).eq('id', artworkId);
+
         revalidatePath('/admin');
+        revalidatePath('/');
+        revalidatePath(`/artworks/${artworkId}`);
     } catch (error) {
         console.log(error);
     }
 };
 
-export const getSimilarArtworks = async (category: string, artworkId: string) => {
+export const searchArtworks = async (searchTerm: string) => {
     try {
-        const supabase = createBrowserClient();
-        const { data: similarArtworks } = await supabase
-            .from('artworks')
-            .select()
-            .eq('category', category)
-            .neq('id', artworkId)
-            .limit(12)
-            .order('created_at', { ascending: false });
+        const supabase = createServerClient();
+        const { data: artworks } = await supabase.from('artworks').select().textSearch('title', searchTerm);
 
-        return similarArtworks || [];
+        return artworks || [];
     } catch (error) {
         console.log(error);
         return [];

@@ -2,10 +2,11 @@ import Image from 'next/image';
 import { Check, X } from 'lucide-react';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { AdminButtons } from '@/components/AdminButtons';
+import { AdminButtons } from '@/components/adminComponents/AdminButtons';
 
 import { categoryMap, formatSize } from '@/utils/helpers';
 import { Artwork } from '@/types';
+import { SearchArtworks } from './SearchArtworks';
 
 type DashboardProps = {
     artworks: Artwork[];
@@ -15,6 +16,9 @@ export const Dashboard = ({ artworks }: DashboardProps) => {
     return (
         <div className="flex-1 text-center">
             <h1 className="mb-4">Табло</h1>
+
+            <SearchArtworks />
+
             <Table className="w-full overflow-x-auto">
                 <TableHeader>
                     <TableRow>
