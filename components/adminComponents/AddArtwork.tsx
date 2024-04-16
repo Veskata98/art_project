@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
+import Image from 'next/image';
 
 import { createArtwork } from '@/actions/artworkActions';
 
@@ -9,7 +10,7 @@ import { categoryMap, surfaceMap } from '@/utils/helpers';
 
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
-import Image from 'next/image';
+import { Input } from '@/components/ui/input';
 
 export const AddArtwork = () => {
     const [imagePreview, setImagePreview] = useState<File | null>(null);
@@ -29,12 +30,13 @@ export const AddArtwork = () => {
             <label htmlFor="image" className="font-semibold">
                 Качи изображение
             </label>
-            <input
+            <Input
                 required
                 type="file"
                 name="image"
                 onChange={(e) => setImagePreview(e.target.files?.[0] || null)}
-                className="w-full p-2 mb-2 text-center"
+                className="w-full p-2 mb-2"
+                accept="image/*"
             />
             {imagePreview && (
                 <div className="flex flex-col justify-center items-center pt-2 pb-4">

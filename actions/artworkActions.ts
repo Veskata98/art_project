@@ -126,12 +126,24 @@ export const getSimilarArtworks = async (category: string, artworkId: string) =>
 
 export const getAllArtworks = async () => {
     try {
-        const supabase = createServerClient();
+        const supabase = createBrowserClient();
         const { data: artworks } = await supabase
             .from('artworks')
             .select()
             .order('created_at', { ascending: false })
             .returns<Artwork[]>();
+
+        return artworks || [];
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
+export const searchArtworks = async (searchTerm: string) => {
+    try {
+        const supabase = createBrowserClient();
+        const { data: artworks } = await supabase.from('artworks').select().textSearch('title', searchTerm);
 
         return artworks || [];
     } catch (error) {
@@ -193,17 +205,5 @@ export const changeAvailability = async (artworkId: string, available: boolean) 
         revalidatePath(`/artworks/${artworkId}`);
     } catch (error) {
         console.log(error);
-    }
-};
-
-export const searchArtworks = async (searchTerm: string) => {
-    try {
-        const supabase = createServerClient();
-        const { data: artworks } = await supabase.from('artworks').select().textSearch('title', searchTerm);
-
-        return artworks || [];
-    } catch (error) {
-        console.log(error);
-        return [];
     }
 };

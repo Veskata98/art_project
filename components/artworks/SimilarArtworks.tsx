@@ -20,7 +20,7 @@ export const SimilarArtworks = async ({ category, id }: SimilarArtworksProps) =>
         <div className="mt-6">
             <h2 className="text-xl">Подобни картини</h2>
             <ScrollArea>
-                <div className="flex py-2 gap-4 mb-4">
+                <div className="flex py-2 gap-4 mb-4 justify-center md:justify-normal">
                     {similarArtworks.map((artwork) => (
                         <ArtworkCard key={artwork.id} artwork={artwork} />
                     ))}
