@@ -154,9 +154,19 @@ export const searchArtworks = async (searchTerm: string) => {
 
 export const deleteArtwork = async (artworkId: string) => {
     try {
+        const artwork: Artwork = await getArtworkById(artworkId);
+
         const supabase = createServerClient();
-        await supabase.from('artworks').delete().eq('id', artworkId);
+        await supabase.from('artworks').delete().eq('id', artwork.id);
+
+        await supabase.storage.from('images').remove([artwork.image.split('/').pop() as string]);
+
         revalidatePath('/admin');
+        revalidatePath('/');
+        revalidatePath(`/artworks`);
+        revalidatePath(`/artworks/${artwork.category}`);
+        revalidatePath(`/artworks/${artwork.id}`);
+        revalidatePath('/archive');
     } catch (error) {
         console.log(error);
     }
@@ -190,6 +200,9 @@ export const createArtwork = async (formData: FormData) => {
 
         revalidatePath('/admin');
         revalidatePath('/');
+        revalidatePath(`/artworks`);
+        revalidatePath(`/artworks/${category}`);
+        revalidatePath('/archive');
     } catch (error) {
         console.log(error);
     }
