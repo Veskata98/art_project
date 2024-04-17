@@ -182,7 +182,7 @@ export const createArtwork = async (formData: FormData) => {
         const file = formData.get('image') as File;
 
         const imageBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
-            .resize(600, 600, { fit: 'inside' })
+            .resize(1000, 1000, { fit: 'inside' })
             .toBuffer();
 
         const { data } = await supabase.storage
