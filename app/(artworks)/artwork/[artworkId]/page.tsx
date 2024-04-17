@@ -81,7 +81,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                     </div>
                 </aside>
             </div>
-            <ShareButtons url={`${process.env.URL}/artworks/${artwork.id}`} />
+            <ShareButtons url={`${process.env.URL}/artwork/${artwork.id}`} />
             <Separator className="md:my-2 my-4" />
             <div className="md:shadow-xl md:p-8 min-h-40 mt-2 mb-4 md:mb-0">
                 <h5 className="text-lg mb-2">Допълнителна информация</h5>
