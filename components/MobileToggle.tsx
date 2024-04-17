@@ -24,7 +24,7 @@ export const MobileToggle = ({ className, isActive }: { className: string; isAct
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="w-full bg-gray-800 text-white">
-                    <h1 className="text-lg md:text-2xl font-bold text-center">Art Gallery</h1>
+                    <h1 className="text-lg md:text-2xl font-bold text-center">Petar Yordanov Art</h1>
 
                     <Separator className="my-4" />
                     <ul className="flex flex-col text-lg">

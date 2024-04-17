@@ -11,7 +11,7 @@ export const Header = () => {
     return (
         <nav className="flex justify-between items-center p-4 bg-gray-800 text-white md:px-8 max-h-16">
             <Link href="/">
-                <h1 className="text-lg md:text-2xl font-bold text-center">Art Gallery</h1>
+                <h1 className="text-lg md:text-2xl font-bold text-center">Petar Yordanov Art</h1>
             </Link>
             <ul className="md:flex hidden space-x-4">
                 <li>

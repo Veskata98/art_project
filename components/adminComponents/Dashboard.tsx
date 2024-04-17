@@ -53,7 +53,11 @@ export const Dashboard = ({ artworks }: DashboardProps) => {
                             <TableCell>{formatSize(artwork.length, artwork.width)}</TableCell>
                             <TableCell>{artwork.price}</TableCell>
                             <TableCell>
-                                <AdminButtons artworkId={artwork.id} available={artwork.available} />
+                                <AdminButtons
+                                    artworkId={artwork.id}
+                                    available={artwork.available}
+                                    category={artwork.category}
+                                />
                             </TableCell>
                         </TableRow>
                     ))}

@@ -7,13 +7,14 @@ import { changeAvailability, deleteArtwork } from '@/actions/artworkActions';
 type AdminButtonsProps = {
     artworkId: string;
     available: boolean;
+    category: string;
 };
 
-export const AdminButtons = ({ artworkId, available }: AdminButtonsProps) => {
+export const AdminButtons = ({ artworkId, available, category }: AdminButtonsProps) => {
     const updateAvailability = async () => {
         const confirm = window.confirm(`Натисни OK, за да ${available ? 'архивираш' : 'възстановиш'} картината`);
         if (confirm) {
-            await changeAvailability(artworkId, !available);
+            await changeAvailability(artworkId, !available, category);
         }
     };
 

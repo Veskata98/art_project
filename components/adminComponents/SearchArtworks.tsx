@@ -5,7 +5,7 @@ export const SearchArtworks = () => {
         'use server';
 
         const searchValue = formData.get('searchValue') as string;
-        redirect(`/admin?search=${searchValue}`);
+        redirect(`/admin?search=${encodeURIComponent(searchValue)}`);
     };
     return (
         <form action={handleSearch} className="flex items-center justify-center md:gap-4 gap-2 mb-4">

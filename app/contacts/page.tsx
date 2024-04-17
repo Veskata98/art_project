@@ -10,22 +10,28 @@ export default function ContactPage() {
                     <h1 className="text-2xl mb-4">Контакти</h1>
                     <p className="text-lg mb-8">За връзка с мен, моля използвайте следните контакти:</p>
                     <ul className="mb-8">
-                        <li className="text-lg mb-2">Телефон: 0888 888 888</li>
+                        <li className="text-lg mb-2">Телефон: 0988 728 392</li>
                         <li className="text-lg mb-2">
                             Имейл:{' '}
-                            <a href="mailto:test@gmail.com" className="text-blue-500">
-                                test@gmail.com
+                            <a href="mailto:yordanovpetar626@gmail.com" className="text-blue-500">
+                                yordanovpetar626@gmail.com
                             </a>
                         </li>
                     </ul>
                     <div className="flex md:flex-row flex-col gap-8 md:gap-16 justify-between items-center">
-                        <Link href="https://www.facebook.com" className="flex items-center flex-col">
+                        <Link
+                            href="https://www.facebook.com/profile.php?id=100014460672795"
+                            className="flex items-center flex-col"
+                        >
                             <Facebook size={32} />
-                            <span>www.facebook.com</span>
+                            <span>Петър Йорданов</span>
                         </Link>
-                        <Link href="https://www.instagram.com" className="flex items-center flex-col">
+                        <Link
+                            href="https://www.instagram.com/art_petaryordanov/"
+                            className="flex items-center flex-col"
+                        >
                             <Instagram size={32} />
-                            <span>www.instagram.com</span>
+                            <span>@art_petaryordanov</span>
                         </Link>
                     </div>
                 </div>

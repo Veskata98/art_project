@@ -217,7 +217,7 @@ export const createArtwork = async (formData: FormData) => {
     }
 };
 
-export const changeAvailability = async (artworkId: string, available: boolean) => {
+export const changeAvailability = async (artworkId: string, available: boolean, category: string) => {
     try {
         const supabase = createServerClient();
         await supabase.from('artworks').update({ available }).eq('id', artworkId);
@@ -225,6 +225,9 @@ export const changeAvailability = async (artworkId: string, available: boolean) 
         revalidatePath('/admin');
         revalidatePath('/');
         revalidatePath(`/artworks/${artworkId}`);
+        revalidatePath('/archive');
+        revalidatePath(`/artworks`);
+        revalidatePath(`/artworks/${category}`);
     } catch (error) {
         console.log(error);
     }

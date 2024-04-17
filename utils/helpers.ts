@@ -10,9 +10,7 @@ export const surfaceMap: any = {
     cardboard: 'Картон',
     paper: 'Хартия',
     wood: 'Дърво',
-    metal: 'Метал',
-    glass: 'Стъкло',
-    stone: 'Камък',
+    canava: 'Канава',
 };
 
 export const categoryMap: any = {
