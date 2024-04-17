@@ -35,7 +35,7 @@ export const AddArtwork = () => {
                 type="file"
                 name="image"
                 onChange={(e) => setImagePreview(e.target.files?.[0] || null)}
-                className="w-full p-2 mb-2"
+                className="w-full p-2 mb-2 bg-zinc-100 cursor-pointer border-gray-700"
                 accept="image/*"
             />
             {imagePreview && (
