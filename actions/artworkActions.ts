@@ -180,7 +180,7 @@ export const createArtwork = async (formData: FormData) => {
         const supabase = createServerClient();
         const { data } = await supabase.storage
             .from('images')
-            .upload(`${title}_${Date.now()}.${file.name.split('.')[1]}`, file);
+            .upload(`IMG_${Date.now()}.${file.name.split('.')[1]}`, file);
 
         const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
 
@@ -202,7 +202,6 @@ export const createArtwork = async (formData: FormData) => {
         revalidatePath('/');
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${category}`);
-        revalidatePath('/archive');
     } catch (error) {
         console.log(error);
     }

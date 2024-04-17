@@ -20,8 +20,8 @@ export const AddArtwork = () => {
         <form
             action={async (formData) => {
                 await createArtwork(formData);
-                // ref.current?.reset();
-                // setImagePreview(null);
+                ref.current?.reset();
+                setImagePreview(null);
             }}
             ref={ref}
             className="flex flex-col gap-3 w-full md:w-3/4 mx-auto px-4 md:px-0"
