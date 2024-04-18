@@ -5,7 +5,6 @@ import Compressor from 'compressorjs';
 export const imageCompress = async (image: File) => {
     const compressedImage = await new Promise((resolve, reject) => {
         new Compressor(image, {
-            quality: 0.6,
             width: 1000,
             height: 1000,
             resize: 'contain',
