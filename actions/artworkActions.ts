@@ -7,8 +7,6 @@ import { Artwork } from '@/types';
 import { createClient as createBrowserClient } from '@/utils/supabase/client';
 import { createClient as createServerClient } from '@/utils/supabase/server';
 
-import sharp from 'sharp';
-
 export const getArchivedArtworks = async () => {
     try {
         const supabase = createBrowserClient();
@@ -181,16 +179,7 @@ export const createArtwork = async (formData: FormData) => {
         const { title, category, surface, length, width, price, frame, description } = Object.fromEntries(formData);
         const file = formData.get('image') as File;
 
-        const imageBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
-            .resize(1000, 1000, { fit: 'inside' })
-            .toBuffer();
-
-        const { data } = await supabase.storage
-            .from('images')
-            .upload(
-                `IMG_${Date.now()}.${file.name.split('.')[1]}`,
-                new File([imageBuffer], file.name, { type: file.type })
-            );
+        const { data } = await supabase.storage.from('images').upload(`IMG_${Date.now()}`, file);
 
         const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
 

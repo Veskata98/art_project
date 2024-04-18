@@ -12,6 +12,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 
+import { imageCompress } from '@/utils/imageCompress';
+
 export const AddArtwork = () => {
     const [imagePreview, setImagePreview] = useState<File | null>(null);
     const ref = useRef<HTMLFormElement>(null);
@@ -19,6 +21,11 @@ export const AddArtwork = () => {
     return (
         <form
             action={async (formData) => {
+                const tempImage = formData.get('image') as File;
+                const compressedImage = await imageCompress(tempImage);
+
+                formData.set('image', compressedImage);
+
                 await createArtwork(formData);
                 ref.current?.reset();
                 setImagePreview(null);
