@@ -76,7 +76,7 @@ export const AddArtwork = () => {
                 required
                 type="number"
                 name="length"
-                placeholder="Дължина"
+                placeholder="Височина"
                 className="w-full p-2 mb-2 border-2 rounded-md"
             />
             <input
