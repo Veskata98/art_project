@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import about1 from '@/public/about1.png';
-import about2 from '@/public/about2.webp';
-import about3 from '@/public/about3.png';
+import about1 from '@/public/about1.jpg';
+import about2 from '@/public/about2.jpg';
+import about3 from '@/public/about3.jpg';
 
 export default function AboutPage() {
     return (
@@ -26,9 +26,9 @@ export default function AboutPage() {
                         тук
                     </Link>
                 </p>
-                <div className="my-6 flex md:flex-row flex-col w-full justify-around items-center gap-4">
-                    <Image src={about1} alt="About 1" width={200} className="-rotate-12" />
-                    <Image src={about2} alt="About 2" width={200} className="rotate-6" />
+                <div className="my-6 flex md:flex-row flex-col w-full justify-around items-center md:gap-4 gap-8">
+                    <Image src={about1} alt="About 1" width={200} className="-rotate-3" />
+                    <Image src={about2} alt="About 2" width={200} className="rotate-3" />
                     <Image src={about3} alt="About 3" width={200} className="-rotate-3" />
                 </div>
                 <div className="mt-4">

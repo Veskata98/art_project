@@ -15,6 +15,8 @@ interface ArtworksCategoryPageProps {
     };
 }
 
+export const revalidate = 300;
+
 export default async function ArtworksCategoryPage({ params, searchParams }: ArtworksCategoryPageProps) {
     const category = params.category;
 

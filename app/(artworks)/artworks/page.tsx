@@ -6,6 +6,8 @@ interface ArtworksPageProps {
     searchParams: { page: string };
 }
 
+export const revalidate = 300;
+
 export default async function ArtworksPage({ searchParams }: ArtworksPageProps) {
     const pageNumber = searchParams.page ? parseInt(searchParams.page) : 1;
 

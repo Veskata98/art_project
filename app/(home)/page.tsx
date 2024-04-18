@@ -2,6 +2,8 @@ import { getLatestArtworks } from '@/actions/artworkActions';
 
 import { HomePageCarousel } from '@/components/home/Carousel';
 
+export const revalidate = 300;
+
 export default async function HomePage() {
     const latestArtworks = await getLatestArtworks();
 
