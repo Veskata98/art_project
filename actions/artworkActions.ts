@@ -167,7 +167,7 @@ export const deleteArtwork = async (artworkId: string) => {
         revalidatePath('/');
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${artwork.category}`);
-        revalidatePath(`/artworks/${artwork.id}`);
+        revalidatePath(`/artwork/${artwork.id}`);
         revalidatePath('/archive');
     } catch (error) {
         console.log(error);
@@ -181,16 +181,20 @@ export const createArtwork = async (formData: FormData) => {
         const { title, category, surface, length, width, price, frame, description } = Object.fromEntries(formData);
         const file = formData.get('image') as File;
 
-        const imageBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
-            .resize(1000, 1000, { fit: 'inside' })
-            .toBuffer();
+        // const imageBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
+        //     .resize(1000, 1000, { fit: 'inside' })
+        //     .toBuffer();
+
+        // const { data } = await supabase.storage
+        //     .from('images')
+        //     .upload(
+        //         `IMG_${Date.now()}.${file.name.split('.')[1]}`,
+        //         new File([imageBuffer], file.name, { type: file.type })
+        //     );
 
         const { data } = await supabase.storage
             .from('images')
-            .upload(
-                `IMG_${Date.now()}.${file.name.split('.')[1]}`,
-                new File([imageBuffer], file.name, { type: file.type })
-            );
+            .upload(`IMG_${Date.now()}.${file.name.split('.')[1]}`, file);
 
         const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
 
@@ -224,7 +228,7 @@ export const changeAvailability = async (artworkId: string, available: boolean, 
 
         revalidatePath('/admin');
         revalidatePath('/');
-        revalidatePath(`/artworks/${artworkId}`);
+        revalidatePath(`/artwork/${artworkId}`);
         revalidatePath('/archive');
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${category}`);
