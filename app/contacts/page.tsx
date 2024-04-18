@@ -1,6 +1,10 @@
-import { Separator } from '@/components/ui/separator';
-import { Facebook, Instagram } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
+
+import { Separator } from '@/components/ui/separator';
+
+import instagramIcon from '@/public/instagramIcon.png';
+import facebookIcon from '@/public/facebookIcon.png';
 
 export default function ContactPage() {
     return (
@@ -23,14 +27,14 @@ export default function ContactPage() {
                             href="https://www.facebook.com/profile.php?id=100014460672795"
                             className="flex items-center flex-col"
                         >
-                            <Facebook size={32} />
+                            <Image src={facebookIcon} alt="Facebook" width={50} height={50} />
                             <span>Петър Йорданов</span>
                         </Link>
                         <Link
                             href="https://www.instagram.com/art_petaryordanov/"
                             className="flex items-center flex-col"
                         >
-                            <Instagram size={32} />
+                            <Image src={instagramIcon} alt="Instagram" width={50} height={50} />
                             <span>@art_petaryordanov</span>
                         </Link>
                     </div>
