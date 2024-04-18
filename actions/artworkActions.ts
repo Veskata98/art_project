@@ -181,20 +181,17 @@ export const createArtwork = async (formData: FormData) => {
         const { title, category, surface, length, width, price, frame, description } = Object.fromEntries(formData);
         const file = formData.get('image') as File;
 
-        // const imageBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
-        //     .resize(1000, 1000, { fit: 'inside' })
-        //     .toBuffer();
-
-        // const { data } = await supabase.storage
-        //     .from('images')
-        //     .upload(
-        //         `IMG_${Date.now()}.${file.name.split('.')[1]}`,
-        //         new File([imageBuffer], file.name, { type: file.type })
-        //     );
+        const imageBuffer = await sharp(Buffer.from(await file.arrayBuffer()))
+            .resize(1000, 1000, { fit: 'inside' })
+            .jpeg({ quality: 60 })
+            .toBuffer();
 
         const { data } = await supabase.storage
             .from('images')
-            .upload(`IMG_${Date.now()}.${file.name.split('.')[1]}`, file);
+            .upload(
+                `IMG_${Date.now()}.${file.name.split('.')[1]}`,
+                new File([imageBuffer], file.name, { type: file.type })
+            );
 
         const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
 
