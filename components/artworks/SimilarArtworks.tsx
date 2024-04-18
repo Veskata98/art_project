@@ -13,8 +13,6 @@ type SimilarArtworksProps = {
     id: string;
 };
 
-export const revalidate = 300;
-
 export const SimilarArtworks = async ({ category, id }: SimilarArtworksProps) => {
     const similarArtworks: Artwork[] = await getSimilarArtworks(category, id);
 
