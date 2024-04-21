@@ -19,7 +19,7 @@ type ArtworkIdPageParams = {
     };
 };
 
-export const revalidate = 300;
+export const revalidate = 0;
 
 export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     const artworkId = params.artworkId;
@@ -29,6 +29,7 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     if (!artwork) {
         return redirect('/');
     }
+
     return (
         <section className="relative w-full xl:w-4/6 lg:w-5/6">
             <ReturnButton className="hover:underline flex gap-x-2 mb-2" />

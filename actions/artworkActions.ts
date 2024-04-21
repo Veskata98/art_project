@@ -162,11 +162,12 @@ export const deleteArtwork = async (artworkId: string) => {
         await supabase.storage.from('images').remove([artwork.image.split('/').pop() as string]);
 
         revalidatePath('/admin');
+
         revalidatePath('/');
+        revalidatePath('/archive');
+
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${artwork.category}`);
-        revalidatePath(`/artwork/${artwork.id}`);
-        revalidatePath('/archive');
     } catch (error) {
         console.log(error);
     }
@@ -199,6 +200,7 @@ export const createArtwork = async (formData: FormData) => {
 
         revalidatePath('/admin');
         revalidatePath('/');
+
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${category}`);
     } catch (error) {
@@ -213,8 +215,9 @@ export const changeAvailability = async (artworkId: string, available: boolean, 
 
         revalidatePath('/admin');
         revalidatePath('/');
-        revalidatePath(`/artwork/${artworkId}`);
+
         revalidatePath('/archive');
+
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${category}`);
     } catch (error) {
