@@ -19,7 +19,7 @@ type ArtworkIdPageParams = {
     };
 };
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
     const artworkId = params.artworkId;

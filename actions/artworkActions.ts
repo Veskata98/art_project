@@ -168,6 +168,8 @@ export const deleteArtwork = async (artworkId: string) => {
 
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${artwork.category}`);
+
+        revalidatePath(`/artwork/${artworkId}`);
     } catch (error) {
         console.log(error);
     }
@@ -220,6 +222,8 @@ export const changeAvailability = async (artworkId: string, available: boolean, 
 
         revalidatePath(`/artworks`);
         revalidatePath(`/artworks/${category}`);
+
+        revalidatePath(`/artwork/${artworkId}`);
     } catch (error) {
         console.log(error);
     }
