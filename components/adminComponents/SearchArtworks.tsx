@@ -4,7 +4,7 @@ export const SearchArtworks = () => {
     const handleSearch = async (formData: FormData) => {
         'use server';
 
-        const searchValue = formData.get('searchValue') as string;
+        const searchValue = (formData.get('searchValue') as string).trim();
         redirect(`/admin?search=${encodeURIComponent(searchValue)}`);
     };
 
