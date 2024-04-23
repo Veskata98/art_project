@@ -24,7 +24,7 @@ export const AddArtwork = () => {
                 const tempImage = formData.get('image') as File;
                 const compressedImage = await imageCompress(tempImage);
 
-                formData.set('image', compressedImage);
+                formData.set('image', compressedImage || '');
 
                 await createArtwork(formData);
                 ref.current?.reset();
