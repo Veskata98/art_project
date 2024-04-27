@@ -26,6 +26,7 @@ export default function ContactPage() {
                         <Link
                             href="https://www.facebook.com/profile.php?id=100014460672795"
                             className="flex items-center flex-col"
+                            target="_blank"
                         >
                             <Image src={facebookIcon} alt="Facebook" width={50} height={50} />
                             <span>Петър Йорданов</span>
@@ -33,6 +34,7 @@ export default function ContactPage() {
                         <Link
                             href="https://www.instagram.com/art_petaryordanov/"
                             className="flex items-center flex-col"
+                            target="_blank"
                         >
                             <Image src={instagramIcon} alt="Instagram" width={50} height={50} />
                             <span>@art_petaryordanov</span>
