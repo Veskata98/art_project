@@ -37,6 +37,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
                                             alt={artwork.title}
                                             className="w-full object-contain md:p-4 p-2"
                                             fill
+                                            priority
                                         />
                                     </CardContent>
                                 </Card>
