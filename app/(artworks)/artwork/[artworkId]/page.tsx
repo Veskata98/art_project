@@ -81,11 +81,11 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
             </div>
             <ShareButtons url={`${process.env.URL}/artwork/${artwork.id}`} />
             <Separator className="md:my-2 my-4" />
-            <div className="md:shadow-xl md:p-8 md:pt-4 min-h-40 mt-2 mb-4 md:mb-0">
-                <h5 className="text-lg mb-2">Допълнителна информация</h5>
-                <p className="mb-8">{artwork.description}</p>
-                {artwork.available && (
+            <div className="md:shadow-xl md:p-8 md:pt-4 mt-2 mb-4 md:mb-0">
+                <h5 className="text-lg mb-4">Допълнителна информация</h5>
+                {artwork.available ? (
                     <>
+                        <p className="mb-8">{artwork.description}</p>
                         <Separator className="my-2" />
                         <p className="font-semibold text-center">
                             За повече информация относно картината, моля свържете се с мен{' '}
@@ -94,6 +94,8 @@ export default async function ArtworkIdPage({ params }: ArtworkIdPageParams) {
                             </Link>
                         </p>
                     </>
+                ) : (
+                    <p>{artwork.description}</p>
                 )}
             </div>
             <SimilarArtworks category={artwork.category} id={artwork.id} />
