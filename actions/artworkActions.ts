@@ -180,10 +180,14 @@ export const createArtwork = async (formData: FormData) => {
         const supabase = createServerClient();
 
         const { title, category, surface, length, width, price, frame, description } = Object.fromEntries(formData);
+
+        const formattedDescription = description
+            .toString()
+            .replace(/\s*\+\s*/g, ' + ')
+            .replace(/\s*\.\s*/g, '. ');
+
         const file = formData.get('image') as File;
-
         const { data } = await supabase.storage.from('images').upload(`IMG_${Date.now()}`, file);
-
         const imageUrl = 'https://smisyrqgnqamsbzmlhox.supabase.co/storage/v1/object/public/images/' + data?.path;
 
         await supabase.from('artworks').insert([
@@ -191,7 +195,7 @@ export const createArtwork = async (formData: FormData) => {
                 title,
                 category,
                 surface,
-                description,
+                description: formattedDescription,
                 frame: frame === 'on' ? true : false,
                 length: Number(length),
                 width: Number(width),
