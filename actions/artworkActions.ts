@@ -184,7 +184,8 @@ export const createArtwork = async (formData: FormData) => {
         const formattedDescription = description
             .toString()
             .replace(/\s*\+\s*/g, ' + ')
-            .replace(/\s*\.\s*/g, '. ');
+            .replace(/\s*\.\s*/g, '. ')
+            .replace(/\s*\,\s*/g, ', ');
 
         const file = formData.get('image') as File;
         const { data } = await supabase.storage.from('images').upload(`IMG_${Date.now()}`, file);
