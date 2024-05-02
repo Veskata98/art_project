@@ -1,6 +1,6 @@
 import { Artwork } from '@/types';
 
-import { ArtworkCard } from '../artwork/ArtworkCard';
+import { ArtworkCard } from './ArtworkCard';
 import { PaginationComponent } from '../pagination/Pagination';
 
 interface ArtworksSectionProps {

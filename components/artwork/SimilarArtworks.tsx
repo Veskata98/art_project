@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 import { ScrollBar, ScrollArea } from '@/components/ui/scroll-area';
-import { ArtworkCard } from '@/components/artwork/ArtworkCard';
+import { ArtworkCard } from '@/components/artworks/ArtworkCard';
 
 import { getSimilarArtworks } from '@/actions/artworkActions';
 
