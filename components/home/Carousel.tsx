@@ -1,11 +1,14 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
-import Image from 'next/image';
-import Link from 'next/link';
 import { Artwork } from '@/types';
 
 interface HomePageCarouselProps {
@@ -13,16 +16,44 @@ interface HomePageCarouselProps {
 }
 
 export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
+    const [autoplay, setAutoplay] = useState(true);
+    const carouselRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const handleMouseEnter = () => {
+            setAutoplay(false);
+        };
+
+        const handleMouseLeave = () => {
+            setAutoplay(true);
+        };
+
+        const carouselElement = carouselRef.current;
+
+        if (carouselElement) {
+            carouselElement.addEventListener('mouseenter', handleMouseEnter);
+            carouselElement.addEventListener('mouseleave', handleMouseLeave);
+        }
+
+        return () => {
+            if (carouselElement) {
+                carouselElement.removeEventListener('mouseenter', handleMouseEnter);
+                carouselElement.removeEventListener('mouseleave', handleMouseLeave);
+            }
+        };
+    }, []);
+
     return (
         <>
             <Carousel
                 className="w-9/12 md:w-full"
+                ref={carouselRef}
                 plugins={[
                     Autoplay({
                         delay: 5000,
                         waitForTransition: true,
                         loop: true,
-                        stopOnMouseEnter: true,
+                        active: autoplay,
                     }),
                 ]}
             >
