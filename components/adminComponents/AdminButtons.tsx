@@ -1,5 +1,3 @@
-'use client';
-
 import { ArchiveRestore, ArchiveX, Trash } from 'lucide-react';
 
 import { changeAvailability, deleteArtwork } from '@/actions/artworkActions';

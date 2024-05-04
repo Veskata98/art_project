@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import { Check, X } from 'lucide-react';
 
@@ -13,11 +16,23 @@ type DashboardProps = {
 };
 
 export const Dashboard = ({ artworks }: DashboardProps) => {
+    const [searchValue, setSearchValue] = useState('');
+
+    let filteredArtworks = artworks;
+
+    if (searchValue && searchValue.length > 0) {
+        filteredArtworks = artworks.filter((artwork) =>
+            artwork.title.toLowerCase().includes(searchValue.toLowerCase())
+        );
+    } else {
+        filteredArtworks = artworks;
+    }
+
     return (
         <div className="flex-1 text-center">
             <h1 className="mb-4">Табло</h1>
 
-            <SearchArtworks />
+            <SearchArtworks handleSearch={setSearchValue} />
 
             <Table className="w-full overflow-x-auto">
                 <TableHeader>
@@ -32,7 +47,7 @@ export const Dashboard = ({ artworks }: DashboardProps) => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {artworks.map((artwork) => (
+                    {filteredArtworks.map((artwork) => (
                         <TableRow key={artwork.id}>
                             <TableCell className="flex items-center justify-center md:p-4 p-1">
                                 <div className="relative md:h-40 md:w-40 h-20 w-20">
