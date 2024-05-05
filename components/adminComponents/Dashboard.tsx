@@ -9,6 +9,7 @@ import { AdminButtons } from '@/components/adminComponents/AdminButtons';
 
 import { categoryMap, formatSize } from '@/utils/helpers';
 import { Artwork } from '@/types';
+
 import { SearchArtworks } from './SearchArtworks';
 
 type DashboardProps = {

@@ -91,7 +91,6 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
                     left: `${x - magnifierWidth / 2}px`,
                     opacity: '1',
                     border: '1px solid lightgray',
-                    backgroundColor: 'white',
                     backgroundImage: `url('${src}')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel}px`,

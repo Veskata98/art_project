@@ -140,18 +140,6 @@ export const getAllArtworks = async () => {
     }
 };
 
-export const searchArtworks = async (searchTerm: string) => {
-    try {
-        const supabase = createBrowserClient();
-        const { data: artworks } = await supabase.from('artworks').select().textSearch('title', searchTerm);
-
-        return artworks || [];
-    } catch (error) {
-        console.log(error);
-        return [];
-    }
-};
-
 export const deleteArtwork = async (artworkId: string) => {
     try {
         const artwork: Artwork = await getArtworkById(artworkId);
