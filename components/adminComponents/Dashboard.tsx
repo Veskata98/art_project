@@ -31,7 +31,9 @@ export const Dashboard = ({ artworks }: DashboardProps) => {
 
     return (
         <div className="flex-1 text-center">
-            <h1 className="mb-4">Табло</h1>
+            <h1 className="mb-4">
+                Табло - <span className="font-semibold">{filteredArtworks.length} картини общо</span>
+            </h1>
 
             <SearchArtworks handleSearch={setSearchValue} />
 
