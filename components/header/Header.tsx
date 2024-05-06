@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MobileToggle } from '../MobileToggle';
 
+import underlineSVG from '@/public/underline_brush.svg';
+import Image from 'next/image';
+
 export const Header = () => {
     const path = usePathname();
     const isActive = (href: string) => path === href || (path.startsWith(href) && path[href.length] === '/');
@@ -15,28 +18,43 @@ export const Header = () => {
             </Link>
             <ul className="md:flex hidden space-x-4">
                 <li>
-                    <Link href="/" className={isActive('/') ? 'underline' : ''}>
+                    <Link href="/" className="flex flex-col items-center relative">
                         Начало
+                        {isActive('/') && (
+                            <Image src={underlineSVG} alt="underline" className="h-[8px] absolute -bottom-2 w-auto" />
+                        )}
                     </Link>
                 </li>
                 <li>
-                    <Link href="/artworks" className={isActive('/artworks') ? 'underline' : ''}>
+                    <Link href="/artworks" className="flex flex-col items-center relative">
                         Картини
+                        {isActive('/artworks') && (
+                            <Image src={underlineSVG} alt="underline" className="h-[8px] absolute -bottom-2 w-auto" />
+                        )}
                     </Link>
                 </li>
                 <li>
-                    <Link href="/archive" className={isActive('/archive') ? 'underline' : ''}>
+                    <Link href="/archive" className="flex flex-col items-center relative">
                         Архив
+                        {isActive('/archive') && (
+                            <Image src={underlineSVG} alt="underline" className="h-[8px] absolute -bottom-2 w-auto" />
+                        )}
                     </Link>
                 </li>
                 <li>
-                    <Link href="/contacts" className={isActive('/contacts') ? 'underline' : ''}>
+                    <Link href="/contacts" className="flex flex-col items-center relative">
                         Контакти
+                        {isActive('/contacts') && (
+                            <Image src={underlineSVG} alt="underline" className="h-[8px] absolute -bottom-2 w-auto" />
+                        )}
                     </Link>
                 </li>
                 <li>
-                    <Link href="/about" className={isActive('/about') ? 'underline' : ''}>
+                    <Link href="/about" className="flex flex-col items-center relative">
                         За мен
+                        {isActive('/about') && (
+                            <Image src={underlineSVG} alt="underline" className="h-[8px] absolute -bottom-2 w-auto" />
+                        )}
                     </Link>
                 </li>
             </ul>

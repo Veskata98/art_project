@@ -22,7 +22,7 @@ export default function AboutPage() {
                 </p>
                 <p className="text-lg mb-4">
                     За повече информация, не се колебайте да се свържите с мен{' '}
-                    <Link href="/contacts" className="text-blue-500 underline">
+                    <Link href="/contacts" className="text-blue-500 underline font-semibold">
                         тук
                     </Link>
                 </p>
