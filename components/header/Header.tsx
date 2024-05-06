@@ -28,7 +28,7 @@ export const Header = () => {
                 <li>
                     <Link href="/artworks" className="flex flex-col items-center relative">
                         Картини
-                        {isActive('/artworks') && (
+                        {(isActive('/artwork') || isActive('/artworks')) && (
                             <Image src={underlineSVG} alt="underline" className="h-[8px] absolute -bottom-2 w-auto" />
                         )}
                     </Link>
