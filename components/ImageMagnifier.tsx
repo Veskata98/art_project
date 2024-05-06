@@ -16,9 +16,9 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
 
     const [windowWidth, setWindowWidth] = useState(0);
 
-    const magnifierHeight = 150;
-    const magnifierWidth = 150;
-    const zoomLevel = 1.3;
+    const magnifierHeight = 120;
+    const magnifierWidth = 120;
+    const zoomLevel = 1.2;
 
     useEffect(() => {
         if (!window) return;
@@ -40,15 +40,6 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
         return <Image src={src} alt={alt} className="object-contain p-2" fill />;
     }
 
-    const mouseEnter = (e: MouseEvent<HTMLImageElement>) => {
-        const el = e.currentTarget;
-
-        const { width, height } = el.getBoundingClientRect();
-        setSize([width, height]);
-
-        setShowMagnifier(true);
-    };
-
     const mouseLeave = (e: MouseEvent<HTMLImageElement>) => {
         e.preventDefault();
         setShowMagnifier(false);
@@ -56,7 +47,7 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
 
     const mouseMove = (e: MouseEvent<HTMLImageElement>) => {
         const el = e.currentTarget;
-        const { top, left } = el.getBoundingClientRect();
+        const { top, left, width, height } = el.getBoundingClientRect();
 
         // Calculate the scale factor
         const scaleX = imgWidth / el.offsetWidth;
@@ -67,6 +58,9 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
         const y = (e.clientY - top) * scaleY;
 
         setXY([x, y]);
+
+        setSize([width, height]);
+        setShowMagnifier(true);
     };
 
     return (
@@ -76,7 +70,6 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
                 alt={alt}
                 className="object-contain p-2"
                 fill
-                onMouseEnter={(e) => mouseEnter(e)}
                 onMouseLeave={(e) => mouseLeave(e)}
                 onMouseMove={(e) => mouseMove(e)}
             />
