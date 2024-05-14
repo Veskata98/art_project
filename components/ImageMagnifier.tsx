@@ -40,6 +40,15 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
         return <Image src={src} alt={alt} className="object-contain p-2" fill />;
     }
 
+    const mouseEnter = (e: MouseEvent<HTMLImageElement>) => {
+        const el = e.currentTarget;
+
+        const { width, height } = el.getBoundingClientRect();
+        setSize([width, height]);
+
+        setShowMagnifier(true);
+    };
+
     const mouseLeave = (e: MouseEvent<HTMLImageElement>) => {
         e.preventDefault();
         setShowMagnifier(false);
@@ -47,7 +56,7 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
 
     const mouseMove = (e: MouseEvent<HTMLImageElement>) => {
         const el = e.currentTarget;
-        const { top, left, width, height } = el.getBoundingClientRect();
+        const { top, left } = el.getBoundingClientRect();
 
         // Calculate the scale factor
         const scaleX = imgWidth / el.offsetWidth;
@@ -58,9 +67,6 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
         const y = (e.clientY - top) * scaleY;
 
         setXY([x, y]);
-
-        setSize([width, height]);
-        setShowMagnifier(true);
     };
 
     return (
@@ -70,27 +76,26 @@ export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
                 alt={alt}
                 className="object-contain p-2"
                 fill
+                onMouseEnter={(e) => mouseEnter(e)}
                 onMouseLeave={(e) => mouseLeave(e)}
                 onMouseMove={(e) => mouseMove(e)}
             />
-            <div
-                style={{
-                    display: showMagnifier ? '' : 'none',
-                    position: 'absolute',
-                    pointerEvents: 'none',
-                    height: `${magnifierHeight}px`,
-                    width: `${magnifierWidth}px`,
-                    top: `${y - magnifierHeight / 2}px`,
-                    left: `${x - magnifierWidth / 2}px`,
-                    opacity: '1',
-                    border: '1px solid lightgray',
-                    backgroundImage: `url('${src}')`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel}px`,
-                    backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
-                    backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,
-                }}
-            ></div>
+            {showMagnifier && (
+                <div
+                    className="absolute pointer-events-none opacity-100 bg-no-repeat"
+                    style={{
+                        height: `${magnifierHeight}px`,
+                        width: `${magnifierWidth}px`,
+                        top: `${y - magnifierHeight / 2}px`,
+                        left: `${x - magnifierWidth / 2}px`,
+                        border: '1px solid lightgray',
+                        backgroundImage: `url('${src}')`,
+                        backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel}px`,
+                        backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
+                        backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,
+                    }}
+                ></div>
+            )}
         </>
     );
 };
