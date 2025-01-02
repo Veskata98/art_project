@@ -11,7 +11,7 @@ export const ArtworkCard = ({ artwork }: { artwork: any }) => {
     <Link href={`/artwork/${artwork.id}`}>
       <Card className="dark:border dark:border-primary">
         <CardContent className="p-2">
-          <div className="relative w-80 h-80 mx-auto overflow-hidden">
+          <div className="relative md:w-80 h-80 mx-auto w-full">
             <Image
               className={cn('rounded object-contain overflow-hidden')} /*, !artwork.available && 'opacity-30')*/
               src={artwork.image}
