@@ -1,101 +1,101 @@
 'use client';
 
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useRef, useState, MouseEvent } from 'react';
 import Image from 'next/image';
 
 interface ImageMagnifierProps {
-    src: string;
-    alt: string;
+  src: string;
+  alt: string;
 }
 
 export const ImageMagnifier = ({ src, alt }: ImageMagnifierProps) => {
-    const [showMagnifier, setShowMagnifier] = useState(false);
+  const [showMagnifier, setShowMagnifier] = useState(false);
+  const [[x, y], setXY] = useState([0, 0]);
+  const [windowWidth, setWindowWidth] = useState(0);
 
-    const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
-    const [[x, y], setXY] = useState([0, 0]);
+  const magnifierHeight = 120;
+  const magnifierWidth = 120;
+  const zoomLevel = 2;
 
-    const [windowWidth, setWindowWidth] = useState(0);
+  const imgRef = useRef<HTMLImageElement | null>(null);
 
-    const magnifierHeight = 120;
-    const magnifierWidth = 120;
-    const zoomLevel = 1.2;
+  const mouseEnter = () => setShowMagnifier(true);
 
-    useEffect(() => {
-        if (!window) return;
+  const mouseLeave = () => setShowMagnifier(false);
 
-        const resizeFunc = () => {
-            setWindowWidth(window.innerWidth);
-        };
+  const mouseMove = (e: MouseEvent<HTMLImageElement>) => {
+    if (!imgRef.current) return;
 
-        resizeFunc();
+    const { top, left, width, height } = imgRef.current.getBoundingClientRect();
 
-        window.addEventListener('resize', resizeFunc);
+    // Calculate the position of the magnifier
+    const x = Math.max(Math.min(e.clientX - left - magnifierWidth / 2, width - magnifierWidth), 0);
+    const y = Math.max(Math.min(e.clientY - top - magnifierHeight / 2, height - magnifierHeight), 0);
 
-        return () => {
-            window.removeEventListener('resize', resizeFunc);
-        };
-    }, []);
+    setXY([x, y]);
+  };
 
-    if (windowWidth < 1024) {
-        return <Image src={src} alt={alt} className="object-contain p-2" fill />;
-    }
+  useEffect(() => {
+    if (!window) return;
 
-    const mouseEnter = (e: MouseEvent<HTMLImageElement>) => {
-        const el = e.currentTarget;
-
-        const { width, height } = el.getBoundingClientRect();
-        setSize([width, height]);
-
-        setShowMagnifier(true);
+    const resizeFunc = () => {
+      setWindowWidth(window.innerWidth);
     };
 
-    const mouseLeave = (e: MouseEvent<HTMLImageElement>) => {
-        e.preventDefault();
-        setShowMagnifier(false);
+    resizeFunc();
+
+    window.addEventListener('resize', resizeFunc);
+
+    return () => {
+      window.removeEventListener('resize', resizeFunc);
     };
+  }, []);
 
-    const mouseMove = (e: MouseEvent<HTMLImageElement>) => {
-        const el = e.currentTarget;
-        const { top, left } = el.getBoundingClientRect();
-
-        // Calculate the scale factor
-        const scaleX = imgWidth / el.offsetWidth;
-        const scaleY = imgHeight / el.offsetHeight;
-
-        // Adjust mouse coordinates
-        const x = (e.clientX - left) * scaleX;
-        const y = (e.clientY - top) * scaleY;
-
-        setXY([x, y]);
-    };
-
+  if (windowWidth < 1024) {
     return (
-        <>
-            <Image
-                src={src}
-                alt={alt}
-                className="object-contain p-2"
-                fill
-                onMouseEnter={(e) => mouseEnter(e)}
-                onMouseLeave={(e) => mouseLeave(e)}
-                onMouseMove={(e) => mouseMove(e)}
-            />
-            {showMagnifier && (
-                <div
-                    className="absolute pointer-events-none opacity-100 bg-no-repeat"
-                    style={{
-                        height: `${magnifierHeight}px`,
-                        width: `${magnifierWidth}px`,
-                        top: `${y - magnifierHeight / 2}px`,
-                        left: `${x - magnifierWidth / 2}px`,
-                        border: '1px solid lightgray',
-                        backgroundImage: `url('${src}')`,
-                        backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel}px`,
-                        backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
-                        backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,
-                    }}
-                ></div>
-            )}
-        </>
+      <div className="relative flex justify-center items-center">
+        <Image src={src} alt={alt} className="object-contain" width={600} height={600} />
+      </div>
     );
+  }
+
+  return (
+    <div className="relative flex justify-center items-center">
+      <Image
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        width={600}
+        height={600}
+        className="object-contain"
+        onMouseEnter={mouseEnter}
+        onMouseLeave={mouseLeave}
+        onMouseMove={mouseMove}
+      />
+      {showMagnifier && imgRef.current && (
+        <div
+          className="absolute pointer-events-none border border-gray-300 overflow-hidden rounded-md"
+          style={{
+            width: `${magnifierWidth}px`,
+            height: `${magnifierHeight}px`,
+            top: `${y}px`,
+            left: `${x}px`,
+          }}
+        >
+          <Image
+            src={src}
+            alt={`${alt} magnified`}
+            fill
+            style={{
+              position: 'absolute',
+              top: `-${y * zoomLevel}px`,
+              left: `-${x * zoomLevel}px`,
+              transform: `scale(${zoomLevel})`,
+              transformOrigin: 'top left',
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
 };

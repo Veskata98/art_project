@@ -1,32 +1,29 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Shantell_Sans } from 'next/font/google';
 import './globals.css';
 import { Header } from '../components/header/Header';
-import { Footer } from '@/components/footer/Footer';
+import { ThemeProvider } from '@/providers/ThemeProvider';
+import { cn } from '@/utils/helpers';
 
-const inter = Inter({ subsets: ['latin'] });
+const caveat = Shantell_Sans({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {
-    title: 'Petar Yordanov Art',
+  title: 'Petar Yordanov Art',
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={inter.className}>
-                <Header />
-                <main
-                    className="flex flex-col items-center justify-between md:p-10 p-4"
-                    style={{ minHeight: 'calc(100vh - 120px)' }}
-                >
-                    {children}
-                </main>
-                <Footer />
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(caveat.className, 'min-h-screen dark:bg-card flex flex-col')}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <Header />
+          <main className="py-6 flex-grow flex flex-col">{children}</main>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }

@@ -7,27 +7,24 @@ import { categoryMap } from '@/utils/helpers';
 import { getArtworksByCategory } from '@/actions/artworkActions';
 
 interface ArtworksCategoryPageProps {
-    params: {
-        category: string;
-    };
-    searchParams: {
-        page: string;
-    };
+  params: Promise<{
+    category: string;
+  }>;
+  searchParams: Promise<{
+    page: string;
+  }>;
 }
 
-export const revalidate = 300;
-
 export default async function ArtworksCategoryPage({ params, searchParams }: ArtworksCategoryPageProps) {
-    const category = params.category;
+  const category = (await params).category;
 
-    if (!categoryMap[category]) {
-        return redirect('/artworks');
-    }
+  if (!categoryMap[category]) {
+    return redirect('/artworks');
+  }
 
-    const page = parseInt(searchParams.page) || 1;
-    const { artworks, totalArtworks } = await getArtworksByCategory(category, page);
+  const paramsPage = (await searchParams).page;
+  const pageNumber = paramsPage ? parseInt(paramsPage) : 1;
+  const { artworks, totalArtworks } = await getArtworksByCategory(category, pageNumber);
 
-    return (
-        <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks || 0} heading={categoryMap[category]} />
-    );
+  return <ArtworksSection artworks={artworks} totalArtworkCount={totalArtworks || 0} heading={categoryMap[category]} />;
 }

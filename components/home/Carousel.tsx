@@ -1,90 +1,101 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
+import { Artwork } from '@/types';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/utils/helpers';
 import Link from 'next/link';
 
-import { Card, CardContent } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
-
-import { Artwork } from '@/types';
-
 interface HomePageCarouselProps {
-    latestArtworks: Artwork[];
+  latestArtworks: Artwork[];
 }
 
 export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
-    const [autoplay, setAutoplay] = useState(true);
-    const carouselRef = useRef<HTMLDivElement | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleArtworkCount, setVisibleArtworkCount] = useState(3);
+  const [isPaused, setIsPaused] = useState(false);
 
-    useEffect(() => {
-        const handleMouseEnter = () => {
-            setAutoplay(false);
-        };
+  const gridColsClass = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-2',
+    3: 'grid-cols-3',
+  }[visibleArtworkCount];
 
-        const handleMouseLeave = () => {
-            setAutoplay(true);
-        };
+  useEffect(() => {
+    if (isPaused) return; // Don't set the interval if paused
 
-        const carouselElement = carouselRef.current;
+    const timer = setInterval(() => {
+      const newIndex = currentIndex + visibleArtworkCount;
 
-        if (carouselElement) {
-            carouselElement.addEventListener('mouseenter', handleMouseEnter);
-            carouselElement.addEventListener('mouseleave', handleMouseLeave);
-        }
+      if (newIndex + visibleArtworkCount > latestArtworks.length) {
+        setCurrentIndex(0);
+        return;
+      }
 
-        return () => {
-            if (carouselElement) {
-                carouselElement.removeEventListener('mouseenter', handleMouseEnter);
-                carouselElement.removeEventListener('mouseleave', handleMouseLeave);
-            }
-        };
-    }, []);
+      setCurrentIndex(newIndex);
+    }, 5000);
 
-    return (
-        <>
-            <Carousel
-                className="w-9/12 md:w-full"
-                ref={carouselRef}
-                plugins={[
-                    Autoplay({
-                        delay: 5000,
-                        waitForTransition: true,
-                        loop: true,
-                        active: autoplay,
-                    }),
-                ]}
-            >
-                <CarouselContent>
-                    {latestArtworks.map((artwork) => (
-                        <CarouselItem key={artwork.id} className="md:basis-1/2 xl:basis-1/3">
-                            <Link href={`/artwork/${artwork.id}`}>
-                                <Card>
-                                    <CardContent className="relative p-4 flex justify-center items-center lg:h-[500px] md:h-[450px] h-[400px]">
-                                        <Image
-                                            src={artwork.image}
-                                            alt={artwork.title}
-                                            className="w-full object-contain md:p-4 p-2"
-                                            fill
-                                            priority
-                                        />
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
-            <Link
-                href="/artworks"
-                className="py-2 text-xl font-semibold hover:bg-zinc-500 transition-all bg-zinc-700 px-4 rounded my-6 text-white"
-            >
-                Разгледайте цялата колекция
-            </Link>
-        </>
-    );
+    return () => clearInterval(timer);
+  }, [latestArtworks.length, visibleArtworkCount, currentIndex, isPaused]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setVisibleArtworkCount(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleArtworkCount(2);
+      } else {
+        setVisibleArtworkCount(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <div
+      className="relative w-full h-[500px] md:h-[450px] overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={currentIndex}
+          className="absolute w-full h-full flex py-2 pt-0"
+          initial={{ x: 300, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -300, opacity: 0 }}
+          transition={{
+            type: 'spring',
+            stiffness: 80,
+            damping: 20,
+            duration: 1.5,
+          }}
+        >
+          <div className={cn('grid gap-4 w-full h-full px-4 sm:px-2 md:px-0', gridColsClass)}>
+            {Array.from({ length: visibleArtworkCount }).map((_, index) => {
+              const artwork = latestArtworks[currentIndex + index];
+              return (
+                <div key={artwork.id} className="relative flex-shrink-0 h-full shadow rounded-sm">
+                  <Link href={`/artwork/${artwork.id}`}>
+                    <Image
+                      src={artwork.image}
+                      alt={artwork.title}
+                      fill
+                      className={cn('object-cover rounded-sm', visibleArtworkCount === 1 && 'object-contain')}
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
 };

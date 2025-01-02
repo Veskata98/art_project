@@ -1,19 +1,38 @@
 import { getLatestArtworks } from '@/actions/artworkActions';
 
 import { HomePageCarousel } from '@/components/home/Carousel';
-
-export const revalidate = 300;
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default async function HomePage() {
-    const latestArtworks = await getLatestArtworks();
+  const latestArtworks = await getLatestArtworks();
 
-    return (
-        <div className="flex flex-col items-center md:w-3/4 w-full">
-            <h1 className="text-3xl font-bold md:mb-2 mb-4 text-center">Добре дошли в моята галерия</h1>
-            <p className="text-lg mb-4 text-center">
-                Изкуството е начин на живот. Разгледайте моите произведения и се насладете на красотата, която те носят.
-            </p>
-            <HomePageCarousel latestArtworks={latestArtworks} />
-        </div>
-    );
+  return (
+    <div className="flex flex-col px-2 sm:px-4 items-center container mx-auto mt-4 space-y-4 md:space-y-8">
+      <div>
+        <span className="absolute mx-auto flex border w-fit bg-gradient-to-r blur-xl from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-3xl md:text-5xl  box-content font-extrabold text-transparent text-center select-none p-2">
+          Добре дошли в моята галерия
+        </span>
+        <h1 className="relative top-0 w-fit h-auto justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-3xl md:text-5xl  font-extrabold text-transparent text-center select-none p-2">
+          Добре дошли в моята галерия
+        </h1>
+      </div>
+
+      <p className="text-lg md:text-2xl text-center md:font-semibold select-none">
+        Изкуството е начин на живот. Разгледайте моите произведения и се насладете на красотата, която те носят.
+      </p>
+
+      <HomePageCarousel latestArtworks={latestArtworks} />
+
+      <Button asChild>
+        <Link
+          href="/artworks"
+          className="text-xl transition-shadow font-semibold bg-gradient-to-r from-green-600 to-green-400 text-white green-shadow
+          "
+        >
+          Разгледайте цялата колекция
+        </Link>
+      </Button>
+    </div>
+  );
 }
