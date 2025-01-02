@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(caveat.className, 'min-h-screen dark:bg-card flex flex-col')}>
+      <body className={cn(caveat.className, 'min-h-screen bg-[#FDF8F6] dark:bg-card flex flex-col')}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Header />
           <main className="py-6 flex-grow flex flex-col">{children}</main>
