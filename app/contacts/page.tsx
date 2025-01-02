@@ -8,7 +8,7 @@ import facebookIcon from '@/public/facebookIcon.png';
 
 export default function ContactPage() {
   return (
-    <section className="container mx-auto ">
+    <section className="container px-4 md:px-8 md:mx-auto">
       <div className="lg:flex mb-8 gap-4 justify-around">
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="text-2xl mb-4">Контакти</h1>
