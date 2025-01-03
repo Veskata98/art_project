@@ -66,6 +66,8 @@ const config = {
       },
       boxShadow: {
         'white-shadow': '0 0 3px 0 #fff',
+        'gradient-shadow': '0 0px 15px 0 rgba(151, 78, 242, 0.5), 0 0px 15px 0 rgba(255, 149, 63, 0.5)',
+        'gradient-shadow-hover': '0 0px 20px 0 rgba(151, 78, 242, 0.7), 0 0px 20px 0 rgba(255, 149, 63, 0.7)',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

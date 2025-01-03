@@ -27,7 +27,7 @@ export default async function HomePage() {
       <Button asChild>
         <Link
           href="/artworks"
-          className="text-xl transition-shadow font-semibold bg-gradient-to-r from-green-600 to-green-400 text-white green-shadow
+          className="text-xl transition-shadow font-semibold bg-gradient-to-r from-[#974ef2] to-[#ff953f] shadow-gradient-shadow hover:shadow-gradient-shadow-hover text-white
           "
         >
           Разгледайте цялата колекция
