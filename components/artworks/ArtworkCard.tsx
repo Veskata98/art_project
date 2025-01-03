@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 export const ArtworkCard = ({ artwork }: { artwork: any }) => {
   return (
     <Link href={`/artwork/${artwork.id}`}>
-      <Card className="white-shadow rounded-sm max-w-[340px]">
+      <Card className="white-shadow rounded-sm w-[340px] max-w-[340px]">
         <CardContent className="p-2">
           <div className="relative md:w-80 h-80 mx-auto w-full">
             <Image
