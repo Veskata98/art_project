@@ -58,7 +58,7 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
 
   return (
     <div
-      className="relative w-full h-[500px] md:h-[450px] overflow-hidden"
+      className="relative w-full h-[450px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
