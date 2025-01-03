@@ -12,7 +12,7 @@ interface ArtworkSidePanelProps {
 export const ArtworkSidePanel = ({ artwork }: ArtworkSidePanelProps) => {
   return (
     <aside
-      className="lg:w-[20rem] xl:w-[25rem] w-full flex flex-col pt-0 lg:p-4  items-center justify-around lg:shadow-xl
+      className="lg:w-[20rem] xl:w-[25rem] w-full flex flex-col pt-0 lg:p-4 items-center justify-around lg:shadow-xl
     rounded-lg"
     >
       <div className="text-center mb-6 lg:mb-0">

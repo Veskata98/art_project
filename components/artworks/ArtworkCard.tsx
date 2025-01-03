@@ -9,11 +9,11 @@ import { Separator } from '@/components/ui/separator';
 export const ArtworkCard = ({ artwork }: { artwork: any }) => {
   return (
     <Link href={`/artwork/${artwork.id}`}>
-      <Card className="dark:border dark:border-primary">
+      <Card className="white-shadow rounded-sm">
         <CardContent className="p-2">
           <div className="relative md:w-80 h-80 mx-auto w-full">
             <Image
-              className={cn('rounded object-contain overflow-hidden')} /*, !artwork.available && 'opacity-30')*/
+              className={cn('rounded-sm object-contain overflow-hidden')} /*, !artwork.available && 'opacity-30')*/
               src={artwork.image}
               alt={artwork.title}
               fill

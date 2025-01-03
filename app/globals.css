@@ -75,3 +75,8 @@
 .green-shadow:hover {
   box-shadow: 0 0 15px 0 #22c55e;
 }
+
+.white-shadow {
+  box-shadow: 0 0 3px 0 #fff;
+  z-index: 1; /* Ensure it appears above other elements if needed */
+}
