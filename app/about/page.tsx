@@ -8,7 +8,7 @@ import about3 from '@/public/about3.jpg';
 export default function AboutPage() {
   return (
     <div>
-      <div className="container max-w-4xl h-full mx-auto bg-muted p-8 rounded-lg shadow-md text-center">
+      <div className="container max-w-4xl h-full mx-auto lg:bg-muted p-8 rounded-lg lg:shadow-md text-center">
         <h1 className="text-3xl font-semibold mb-4">За Мен</h1>
         <p className="text-lg mb-4">
           Казвам се Петър Йорданов, самоук художник, който обича да изразява своите идеи чрез различни техники за

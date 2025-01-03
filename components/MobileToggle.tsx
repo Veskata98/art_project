@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Menu, Moon, Sun } from 'lucide-react';
 
-import { SheetContent, SheetTrigger, Sheet } from '@/components/ui/sheet';
+import { SheetContent, SheetTrigger, Sheet, SheetTitle } from '@/components/ui/sheet';
 import { Button } from './ui/button';
 import { cn } from '@/utils/helpers';
 import { Separator } from './ui/separator';
@@ -26,7 +26,7 @@ export const MobileToggle = ({ className, isActive }: { className: string; isAct
           </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full dark:bg-card dark:text-white">
-          <h1 className="text-lg md:text-2xl font-bold text-start">Petar Yordanov Art</h1>
+          <SheetTitle className="pb-1">Petar Yordanov Art</SheetTitle>
 
           <Separator className="my-2" />
           <ul className="flex flex-col text-lg">
