@@ -11,10 +11,7 @@ interface ArtworkSidePanelProps {
 
 export const ArtworkSidePanel = ({ artwork }: ArtworkSidePanelProps) => {
   return (
-    <aside
-      className="lg:w-[20rem] xl:w-[25rem] w-full flex flex-col pt-0 lg:p-4 items-center justify-around lg:shadow-xl
-    rounded-lg"
-    >
+    <aside className="lg:w-[20rem] xl:w-[25rem] w-full flex flex-col pt-0 lg:p-4 items-center justify-around lg:shadow-white-shadow rounded">
       <div className="text-center mb-6 lg:mb-0">
         <h1 className="text-xl font-semibold mb-2 text-center">{artwork?.title}</h1>
         <p className="flex gap-2 justify-center items-center">
@@ -40,7 +37,7 @@ export const ArtworkSidePanel = ({ artwork }: ArtworkSidePanelProps) => {
         )}
       </div>
 
-      <div className="flex flex-col gap-4 text-center p-3 rounded-md shadow border border-gray-100 w-full">
+      <div className="flex flex-col gap-4 text-center p-3 rounded-md shadow border border-gray-100 lg:border-none w-full">
         <p className="flex justify-center items-center gap-2">
           <span className="font-semibold ">Рамка:</span>
           {artwork.frame ? <Check className="w-5 h-5 text-emerald-500" /> : <span>Без</span>}

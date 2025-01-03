@@ -19,7 +19,7 @@ export const ArtworksSection = ({ artworks, totalArtworkCount, heading, classnam
         <div className="w-full mt-4 flex justify-center items-center">Няма намерени картини</div>
       ) : (
         <>
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center">
             {artworks.map((artwork) => (
               <ArtworkCard key={artwork.id} artwork={artwork} />
             ))}
