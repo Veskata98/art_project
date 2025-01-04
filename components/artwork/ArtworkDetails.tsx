@@ -15,7 +15,7 @@ export const ArtworkDetails = ({ available, description }: ArtworkDetailsProps) 
         <>
           <p className="mb-8 text-pretty">{description}</p>
           <Separator className="my-2" />
-          <p className="font-semibold text-center text-balance">
+          <p className="font-semibold md:text-center text-balance">
             За повече информация относно картината, моля свържете се с мен{' '}
             <Link href="/contacts" className="underline text-blue-500">
               тук
