@@ -72,3 +72,7 @@
   box-shadow: 0 0 3px 0 #fff;
   z-index: 1; /* Ensure it appears above other elements if needed */
 }
+
+html {
+  scroll-behavior: smooth;
+}
