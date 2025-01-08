@@ -80,15 +80,24 @@ export const HomePageCarousel = ({ latestArtworks }: HomePageCarouselProps) => {
             {Array.from({ length: visibleArtworkCount }).map((_, index) => {
               const artwork = latestArtworks[currentIndex + index];
               return (
-                <div key={artwork.id} className="relative flex-shrink-0 h-full shadow rounded-sm">
+                <div key={artwork.id} className="relative flex-shrink-0 h-full shadow rounded-sm group">
                   <Link href={`/artwork/${artwork.id}`}>
-                    <Image
-                      src={artwork.image}
-                      alt={artwork.title}
-                      fill
-                      className={cn('object-cover rounded-sm', visibleArtworkCount === 1 && 'object-contain')}
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
-                    />
+                    <div className="relative h-full">
+                      <Image
+                        src={artwork.image}
+                        alt={artwork.title}
+                        fill
+                        className={cn(
+                          'object-cover rounded-sm transition-all duration-300',
+                          visibleArtworkCount === 1 && 'object-contain',
+                          'group-hover:brightness-[0.75]'
+                        )}
+                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white text-xl font-semibold drop-shadow-lg">{artwork.title}</h3>
+                      </div>
+                    </div>
                   </Link>
                 </div>
               );
