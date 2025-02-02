@@ -25,7 +25,6 @@ export default async function HomePage() {
           Добре дошли в моята галерия
         </h1>
       </div>
-
       <p className="text-lg md:text-2xl text-center text-pretty md:font-semibold select-none">
         Изкуството е начин на живот. Разгледайте моите произведения и се насладете на красотата, която те носят.
       </p>
