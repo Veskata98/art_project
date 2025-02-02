@@ -34,7 +34,7 @@ export default async function HomePage() {
       <Button asChild>
         <Link
           href="/artworks"
-          className="text-xl transition-shadow font-semibold bg-gradient-to-r 
+          className="text-lg sm:text-xl transition-shadow font-semibold bg-gradient-to-r 
     from-[#72e9c1] via-[#00c471] via-[#d2f122] via-[#e7b921] to-[#f55105] shadow hover:shadow-md dark:shadow-white-shadow text-white
           "
         >

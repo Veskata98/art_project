@@ -27,9 +27,9 @@ export default function AboutPage() {
           </Link>
         </p>
         <div className="my-6 flex md:flex-row flex-col w-full justify-around items-center md:gap-4 gap-8">
-          <Image src={about1} alt="About 1" width={200} className="-rotate-3" />
-          <Image src={about2} alt="About 2" width={200} className="rotate-3" />
-          <Image src={about3} alt="About 3" width={200} className="-rotate-3" />
+          <Image src={about1} alt="About 1" width={240} className="sm:-rotate-3" />
+          <Image src={about2} alt="About 2" width={240} className="sm:rotate-3" />
+          <Image src={about3} alt="About 3" width={240} className="sm:-rotate-3" />
         </div>
         <div className="mt-4">
           <p className="text-lg">Пожелавам ви приятно разглеждане!</p>
