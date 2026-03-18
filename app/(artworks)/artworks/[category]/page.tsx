@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { ArtworksSection } from '@/components/artworks/ArtworksSection';
@@ -13,6 +14,20 @@ interface ArtworksCategoryPageProps {
   searchParams: Promise<{
     page: string;
   }>;
+}
+
+export async function generateMetadata({ params }: ArtworksCategoryPageProps): Promise<Metadata> {
+  const category = (await params).category;
+  const label = categoryMap[category];
+
+  if (!label) {
+    return { title: 'Картини' };
+  }
+
+  return {
+    title: `${label}`,
+    description: `Разгледайте картини в категория ${label} от художника Петър Йорданов.`,
+  };
 }
 
 export default async function ArtworksCategoryPage({ params, searchParams }: ArtworksCategoryPageProps) {

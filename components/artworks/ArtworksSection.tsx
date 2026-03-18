@@ -14,9 +14,9 @@ interface ArtworksSectionProps {
 export const ArtworksSection = ({ artworks, totalArtworkCount, heading, classname }: ArtworksSectionProps) => {
   return (
     <div className={cn('flex-1', classname)}>
-      <h1 className="text-2xl font-bold text-center mb-2">{heading ? heading : 'Всички Картини'}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">{heading ? heading : 'Всички Картини'}</h1>
       {artworks.length === 0 ? (
-        <div className="w-full mt-4 flex justify-center items-center">Няма намерени картини</div>
+        <div className="w-full mt-8 flex justify-center items-center text-muted-foreground">Няма намерени картини</div>
       ) : (
         <>
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center">

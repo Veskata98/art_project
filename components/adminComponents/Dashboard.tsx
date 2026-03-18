@@ -54,7 +54,7 @@ export const Dashboard = ({ artworks }: DashboardProps) => {
                         <TableRow key={artwork.id}>
                             <TableCell className="flex items-center justify-center md:p-4 p-1">
                                 <div className="relative md:h-40 md:w-40 h-20 w-20">
-                                    <Image src={artwork.image} alt={artwork.title} fill className="object-contain" />
+                                    <Image src={artwork.image} alt={artwork.title} fill className="object-contain" sizes="(max-width: 768px) 80px, 160px" loading="lazy" />
                                 </div>
                             </TableCell>
                             <TableCell>

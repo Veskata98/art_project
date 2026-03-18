@@ -13,12 +13,12 @@ export const Header = () => {
   const isActive = (href: string) => path === href || (path.startsWith(href) && path[href.length] === '/');
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-neutral-700 text-white md:px-8 max-h-16">
+    <nav className="flex justify-between items-center p-4 bg-neutral-800 dark:bg-neutral-900 text-white md:px-12 max-h-16 border-b border-neutral-700/50">
       <Link href="/">
-        <h1 className="text-lg md:text-xl font-bold text-center">Petar Yordanov Art</h1>
+        <h1 className="text-lg md:text-xl font-bold text-center tracking-wider uppercase">Petar Yordanov Art</h1>
       </Link>
 
-      <ul className="lg:flex hidden gap-6 absolute left-1/2 transform -translate-x-1/2">
+      <ul className="lg:flex hidden gap-8 absolute left-1/2 transform -translate-x-1/2">
         <li>
           <Link href="/" className="text-lg flex flex-col items-center relative">
             Начало

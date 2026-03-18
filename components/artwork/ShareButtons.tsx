@@ -15,8 +15,8 @@ import {
 
 export const ShareButtons = ({ url }: { url: string }) => {
     return (
-        <>
-            <p>Сподели: </p>
+        <div className="flex items-center gap-3">
+            <p className="text-muted-foreground text-sm">Сподели: </p>
             <div className="flex gap-2">
                 <FacebookShareButton url={url}>
                     <FacebookIcon size={32} round />
@@ -34,6 +34,6 @@ export const ShareButtons = ({ url }: { url: string }) => {
                     <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
             </div>
-        </>
+        </div>
     );
 };

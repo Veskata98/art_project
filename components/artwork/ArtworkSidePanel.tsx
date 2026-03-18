@@ -11,12 +11,12 @@ interface ArtworkSidePanelProps {
 
 export const ArtworkSidePanel = ({ artwork }: ArtworkSidePanelProps) => {
   return (
-    <aside className="lg:w-[20rem] xl:w-[25rem] w-full flex flex-col pt-0 lg:p-4 items-center justify-around lg:shadow-white-shadow rounded">
+    <aside className="lg:w-[20rem] xl:w-[25rem] w-full flex flex-col pt-0 lg:p-6 items-center justify-around lg:gallery-frame rounded-sm">
       <div className="text-center mb-6 lg:mb-0">
-        <h1 className="text-xl font-semibold mb-2 text-center">{artwork?.title}</h1>
-        <p className="flex gap-2 justify-center items-center">
+        <h1 className="text-2xl font-semibold mb-3 text-center">{artwork?.title}</h1>
+        <p className="flex gap-2 justify-center items-center text-muted-foreground">
           <span className="font-semibold">Категория:</span>{' '}
-          <Link href={`/artworks/${artwork.category}`} className="underline text-sm">
+          <Link href={`/artworks/${artwork.category}`} className="underline text-sm text-primary hover:text-primary/80 transition-colors">
             {categoryMap[artwork.category]}
           </Link>
         </p>
@@ -24,29 +24,29 @@ export const ArtworkSidePanel = ({ artwork }: ArtworkSidePanelProps) => {
 
       <div className="mb-6">
         {artwork.available ? (
-          <div className="flex flex-col items-center">
-            <p className="text-green-500 flex items-center gap-2 font-semibold">
+          <div className="flex flex-col items-center gap-1">
+            <p className="text-emerald-600 dark:text-emerald-400 flex items-center gap-2 font-semibold">
               <Check className="w-5 h-5" /> Налична
             </p>
-            <span>{artwork.price} лв</span>
+            <span className="text-lg font-semibold">{artwork.price} лв</span>
           </div>
         ) : (
-          <p className="text-red-500 flex items-center gap-2 font-semibold">
+          <p className="text-red-500 dark:text-red-400 flex items-center gap-2 font-semibold">
             <X className="w-5 h-5" /> Не е налична
           </p>
         )}
       </div>
 
-      <div className="flex flex-col gap-4 text-center p-3 rounded-md shadow border border-gray-100 lg:border-none w-full">
+      <div className="flex flex-col gap-4 text-center p-4 rounded-sm bg-muted/50 w-full">
         <p className="flex justify-center items-center gap-2">
-          <span className="font-semibold ">Рамка:</span>
-          {artwork.frame ? <Check className="w-5 h-5 text-emerald-500" /> : <span>Без</span>}
+          <span className="font-semibold">Рамка:</span>
+          {artwork.frame ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="text-muted-foreground">Без</span>}
         </p>
         <p>
-          <span className="font-semibold ">Размери:</span> <span>{formatSize(artwork.length, artwork.width)}</span>
+          <span className="font-semibold">Размери:</span> <span className="text-muted-foreground">{formatSize(artwork.length, artwork.width)}</span>
         </p>
         <p>
-          <span className="font-semibold">Повърхност:</span> <span>{surfaceMap[artwork.surface]}</span>
+          <span className="font-semibold">Повърхност:</span> <span className="text-muted-foreground">{surfaceMap[artwork.surface]}</span>
         </p>
       </div>
     </aside>

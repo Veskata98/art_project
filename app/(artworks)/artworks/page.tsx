@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import { getArtworksFromAllCategories } from '@/actions/artworkActions';
 
 import { ArtworksSection } from '@/components/artworks/ArtworksSection';
+
+export const metadata: Metadata = {
+  title: 'Картини',
+  description: 'Разгледайте колекцията от оригинални картини на Петър Йорданов - пейзажи, абстракции, портрети и още.',
+};
 
 interface ArtworksPageProps {
   searchParams: Promise<{ page: string }>;
